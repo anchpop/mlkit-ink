@@ -1,0 +1,232 @@
++ /Users/andrepopovitch/coding/tmp/mlkit-ink/android-oracle/run_oracle.sh /Users/andrepopovitch/coding/tmp/mlkit-ink/testdata/corpus/trials/reference-hi/ink.json /Users/andrepopovitch/coding/tmp/mlkit-ink/testdata/corpus/trials/reference-hi/oracle.json
+reference-hi: intended='hi', top='hi', retained=True, rc=0
++ /Users/andrepopovitch/coding/tmp/mlkit-ink/android-oracle/run_oracle.sh /Users/andrepopovitch/coding/tmp/mlkit-ink/testdata/corpus/trials/reference-cat/ink.json /Users/andrepopovitch/coding/tmp/mlkit-ink/testdata/corpus/trials/reference-cat/oracle.json
+reference-cat: intended='cat', top='cat', retained=True, rc=0
++ /Users/andrepopovitch/coding/tmp/mlkit-ink/android-oracle/run_oracle.sh /Users/andrepopovitch/coding/tmp/mlkit-ink/testdata/corpus/trials/reference-hi-legacy/ink.json /Users/andrepopovitch/coding/tmp/mlkit-ink/testdata/corpus/trials/reference-hi-legacy/oracle.json
+reference-hi-legacy: intended='hi', top='hi', retained=True, rc=0
++ /Users/andrepopovitch/coding/tmp/mlkit-ink/android-oracle/run_oracle.sh /Users/andrepopovitch/coding/tmp/mlkit-ink/testdata/corpus/trials/upper-a/ink.json /Users/andrepopovitch/coding/tmp/mlkit-ink/testdata/corpus/trials/upper-a/oracle.json
+upper-a: intended='A', top='A', retained=True, rc=0
++ /Users/andrepopovitch/coding/tmp/mlkit-ink/android-oracle/run_oracle.sh /Users/andrepopovitch/coding/tmp/mlkit-ink/testdata/corpus/trials/upper-b/ink.json /Users/andrepopovitch/coding/tmp/mlkit-ink/testdata/corpus/trials/upper-b/oracle.json
+upper-b: intended='B', top='B', retained=True, rc=0
++ /Users/andrepopovitch/coding/tmp/mlkit-ink/android-oracle/run_oracle.sh /Users/andrepopovitch/coding/tmp/mlkit-ink/testdata/corpus/trials/upper-c/ink.json /Users/andrepopovitch/coding/tmp/mlkit-ink/testdata/corpus/trials/upper-c/oracle.json
+upper-c: intended='C', top='c', retained=False, rc=0
++ /Users/andrepopovitch/coding/tmp/mlkit-ink/android-oracle/run_oracle.sh /Users/andrepopovitch/coding/tmp/mlkit-ink/testdata/corpus/trials/upper-d/ink.json /Users/andrepopovitch/coding/tmp/mlkit-ink/testdata/corpus/trials/upper-d/oracle.json
+upper-d: intended='D', top='D', retained=True, rc=0
++ /Users/andrepopovitch/coding/tmp/mlkit-ink/android-oracle/run_oracle.sh /Users/andrepopovitch/coding/tmp/mlkit-ink/testdata/corpus/trials/upper-e/ink.json /Users/andrepopovitch/coding/tmp/mlkit-ink/testdata/corpus/trials/upper-e/oracle.json
+upper-e: intended='E', top='E', retained=True, rc=0
++ /Users/andrepopovitch/coding/tmp/mlkit-ink/android-oracle/run_oracle.sh /Users/andrepopovitch/coding/tmp/mlkit-ink/testdata/corpus/trials/upper-f/ink.json /Users/andrepopovitch/coding/tmp/mlkit-ink/testdata/corpus/trials/upper-f/oracle.json
+upper-f: intended='F', top='F', retained=True, rc=0
++ /Users/andrepopovitch/coding/tmp/mlkit-ink/android-oracle/run_oracle.sh /Users/andrepopovitch/coding/tmp/mlkit-ink/testdata/corpus/trials/upper-g/ink.json /Users/andrepopovitch/coding/tmp/mlkit-ink/testdata/corpus/trials/upper-g/oracle.json
+upper-g: intended='G', top='G', retained=True, rc=0
++ /Users/andrepopovitch/coding/tmp/mlkit-ink/android-oracle/run_oracle.sh /Users/andrepopovitch/coding/tmp/mlkit-ink/testdata/corpus/trials/upper-h/ink.json /Users/andrepopovitch/coding/tmp/mlkit-ink/testdata/corpus/trials/upper-h/oracle.json
+upper-h: intended='H', top='H', retained=True, rc=0
++ /Users/andrepopovitch/coding/tmp/mlkit-ink/android-oracle/run_oracle.sh /Users/andrepopovitch/coding/tmp/mlkit-ink/testdata/corpus/trials/upper-i/ink.json /Users/andrepopovitch/coding/tmp/mlkit-ink/testdata/corpus/trials/upper-i/oracle.json
+upper-i: intended='I', top='I', retained=True, rc=0
++ /Users/andrepopovitch/coding/tmp/mlkit-ink/android-oracle/run_oracle.sh /Users/andrepopovitch/coding/tmp/mlkit-ink/testdata/corpus/trials/upper-j/ink.json /Users/andrepopovitch/coding/tmp/mlkit-ink/testdata/corpus/trials/upper-j/oracle.json
+upper-j: intended='J', top='J', retained=True, rc=0
++ /Users/andrepopovitch/coding/tmp/mlkit-ink/android-oracle/run_oracle.sh /Users/andrepopovitch/coding/tmp/mlkit-ink/testdata/corpus/trials/upper-k/ink.json /Users/andrepopovitch/coding/tmp/mlkit-ink/testdata/corpus/trials/upper-k/oracle.json
+upper-k: intended='K', top='K', retained=True, rc=0
++ /Users/andrepopovitch/coding/tmp/mlkit-ink/android-oracle/run_oracle.sh /Users/andrepopovitch/coding/tmp/mlkit-ink/testdata/corpus/trials/upper-l/ink.json /Users/andrepopovitch/coding/tmp/mlkit-ink/testdata/corpus/trials/upper-l/oracle.json
+upper-l: intended='L', top='L', retained=True, rc=0
++ /Users/andrepopovitch/coding/tmp/mlkit-ink/android-oracle/run_oracle.sh /Users/andrepopovitch/coding/tmp/mlkit-ink/testdata/corpus/trials/upper-m/ink.json /Users/andrepopovitch/coding/tmp/mlkit-ink/testdata/corpus/trials/upper-m/oracle.json
+upper-m: intended='M', top='M', retained=True, rc=0
++ /Users/andrepopovitch/coding/tmp/mlkit-ink/android-oracle/run_oracle.sh /Users/andrepopovitch/coding/tmp/mlkit-ink/testdata/corpus/trials/upper-n/ink.json /Users/andrepopovitch/coding/tmp/mlkit-ink/testdata/corpus/trials/upper-n/oracle.json
+upper-n: intended='N', top='N', retained=True, rc=0
++ /Users/andrepopovitch/coding/tmp/mlkit-ink/android-oracle/run_oracle.sh /Users/andrepopovitch/coding/tmp/mlkit-ink/testdata/corpus/trials/upper-o/ink.json /Users/andrepopovitch/coding/tmp/mlkit-ink/testdata/corpus/trials/upper-o/oracle.json
+upper-o: intended='O', top='0', retained=False, rc=0
++ /Users/andrepopovitch/coding/tmp/mlkit-ink/android-oracle/run_oracle.sh /Users/andrepopovitch/coding/tmp/mlkit-ink/testdata/corpus/trials/upper-p/ink.json /Users/andrepopovitch/coding/tmp/mlkit-ink/testdata/corpus/trials/upper-p/oracle.json
+upper-p: intended='P', top='P', retained=True, rc=0
++ /Users/andrepopovitch/coding/tmp/mlkit-ink/android-oracle/run_oracle.sh /Users/andrepopovitch/coding/tmp/mlkit-ink/testdata/corpus/trials/upper-q/ink.json /Users/andrepopovitch/coding/tmp/mlkit-ink/testdata/corpus/trials/upper-q/oracle.json
+upper-q: intended='Q', top='Q', retained=True, rc=0
++ /Users/andrepopovitch/coding/tmp/mlkit-ink/android-oracle/run_oracle.sh /Users/andrepopovitch/coding/tmp/mlkit-ink/testdata/corpus/trials/upper-r/ink.json /Users/andrepopovitch/coding/tmp/mlkit-ink/testdata/corpus/trials/upper-r/oracle.json
+upper-r: intended='R', top='R', retained=True, rc=0
++ /Users/andrepopovitch/coding/tmp/mlkit-ink/android-oracle/run_oracle.sh /Users/andrepopovitch/coding/tmp/mlkit-ink/testdata/corpus/trials/upper-s/ink.json /Users/andrepopovitch/coding/tmp/mlkit-ink/testdata/corpus/trials/upper-s/oracle.json
+upper-s: intended='S', top='s', retained=False, rc=0
++ /Users/andrepopovitch/coding/tmp/mlkit-ink/android-oracle/run_oracle.sh /Users/andrepopovitch/coding/tmp/mlkit-ink/testdata/corpus/trials/upper-t/ink.json /Users/andrepopovitch/coding/tmp/mlkit-ink/testdata/corpus/trials/upper-t/oracle.json
+upper-t: intended='T', top='T', retained=True, rc=0
++ /Users/andrepopovitch/coding/tmp/mlkit-ink/android-oracle/run_oracle.sh /Users/andrepopovitch/coding/tmp/mlkit-ink/testdata/corpus/trials/upper-u/ink.json /Users/andrepopovitch/coding/tmp/mlkit-ink/testdata/corpus/trials/upper-u/oracle.json
+upper-u: intended='U', top='u', retained=False, rc=0
++ /Users/andrepopovitch/coding/tmp/mlkit-ink/android-oracle/run_oracle.sh /Users/andrepopovitch/coding/tmp/mlkit-ink/testdata/corpus/trials/upper-v/ink.json /Users/andrepopovitch/coding/tmp/mlkit-ink/testdata/corpus/trials/upper-v/oracle.json
+upper-v: intended='V', top='v', retained=False, rc=0
++ /Users/andrepopovitch/coding/tmp/mlkit-ink/android-oracle/run_oracle.sh /Users/andrepopovitch/coding/tmp/mlkit-ink/testdata/corpus/trials/upper-w/ink.json /Users/andrepopovitch/coding/tmp/mlkit-ink/testdata/corpus/trials/upper-w/oracle.json
+upper-w: intended='W', top='w', retained=False, rc=0
++ /Users/andrepopovitch/coding/tmp/mlkit-ink/android-oracle/run_oracle.sh /Users/andrepopovitch/coding/tmp/mlkit-ink/testdata/corpus/trials/upper-x/ink.json /Users/andrepopovitch/coding/tmp/mlkit-ink/testdata/corpus/trials/upper-x/oracle.json
+upper-x: intended='X', top='x', retained=False, rc=0
++ /Users/andrepopovitch/coding/tmp/mlkit-ink/android-oracle/run_oracle.sh /Users/andrepopovitch/coding/tmp/mlkit-ink/testdata/corpus/trials/upper-y/ink.json /Users/andrepopovitch/coding/tmp/mlkit-ink/testdata/corpus/trials/upper-y/oracle.json
+upper-y: intended='Y', top='Y', retained=True, rc=0
++ /Users/andrepopovitch/coding/tmp/mlkit-ink/android-oracle/run_oracle.sh /Users/andrepopovitch/coding/tmp/mlkit-ink/testdata/corpus/trials/upper-z/ink.json /Users/andrepopovitch/coding/tmp/mlkit-ink/testdata/corpus/trials/upper-z/oracle.json
+upper-z: intended='Z', top='z', retained=False, rc=0
++ /Users/andrepopovitch/coding/tmp/mlkit-ink/android-oracle/run_oracle.sh /Users/andrepopovitch/coding/tmp/mlkit-ink/testdata/corpus/trials/digit-0/ink.json /Users/andrepopovitch/coding/tmp/mlkit-ink/testdata/corpus/trials/digit-0/oracle.json
+digit-0: intended='0', top='0', retained=True, rc=0
++ /Users/andrepopovitch/coding/tmp/mlkit-ink/android-oracle/run_oracle.sh /Users/andrepopovitch/coding/tmp/mlkit-ink/testdata/corpus/trials/digit-1/ink.json /Users/andrepopovitch/coding/tmp/mlkit-ink/testdata/corpus/trials/digit-1/oracle.json
+digit-1: intended='1', top='1', retained=True, rc=0
++ /Users/andrepopovitch/coding/tmp/mlkit-ink/android-oracle/run_oracle.sh /Users/andrepopovitch/coding/tmp/mlkit-ink/testdata/corpus/trials/digit-2/ink.json /Users/andrepopovitch/coding/tmp/mlkit-ink/testdata/corpus/trials/digit-2/oracle.json
+digit-2: intended='2', top='2', retained=True, rc=0
++ /Users/andrepopovitch/coding/tmp/mlkit-ink/android-oracle/run_oracle.sh /Users/andrepopovitch/coding/tmp/mlkit-ink/testdata/corpus/trials/digit-3/ink.json /Users/andrepopovitch/coding/tmp/mlkit-ink/testdata/corpus/trials/digit-3/oracle.json
+digit-3: intended='3', top='3', retained=True, rc=0
++ /Users/andrepopovitch/coding/tmp/mlkit-ink/android-oracle/run_oracle.sh /Users/andrepopovitch/coding/tmp/mlkit-ink/testdata/corpus/trials/digit-4/ink.json /Users/andrepopovitch/coding/tmp/mlkit-ink/testdata/corpus/trials/digit-4/oracle.json
+digit-4: intended='4', top='4', retained=True, rc=0
++ /Users/andrepopovitch/coding/tmp/mlkit-ink/android-oracle/run_oracle.sh /Users/andrepopovitch/coding/tmp/mlkit-ink/testdata/corpus/trials/digit-5/ink.json /Users/andrepopovitch/coding/tmp/mlkit-ink/testdata/corpus/trials/digit-5/oracle.json
+digit-5: intended='5', top='5', retained=True, rc=0
++ /Users/andrepopovitch/coding/tmp/mlkit-ink/android-oracle/run_oracle.sh /Users/andrepopovitch/coding/tmp/mlkit-ink/testdata/corpus/trials/digit-6/ink.json /Users/andrepopovitch/coding/tmp/mlkit-ink/testdata/corpus/trials/digit-6/oracle.json
+digit-6: intended='6', top='6', retained=True, rc=0
++ /Users/andrepopovitch/coding/tmp/mlkit-ink/android-oracle/run_oracle.sh /Users/andrepopovitch/coding/tmp/mlkit-ink/testdata/corpus/trials/digit-7/ink.json /Users/andrepopovitch/coding/tmp/mlkit-ink/testdata/corpus/trials/digit-7/oracle.json
+digit-7: intended='7', top='7', retained=True, rc=0
++ /Users/andrepopovitch/coding/tmp/mlkit-ink/android-oracle/run_oracle.sh /Users/andrepopovitch/coding/tmp/mlkit-ink/testdata/corpus/trials/digit-8/ink.json /Users/andrepopovitch/coding/tmp/mlkit-ink/testdata/corpus/trials/digit-8/oracle.json
+digit-8: intended='8', top='8', retained=True, rc=0
++ /Users/andrepopovitch/coding/tmp/mlkit-ink/android-oracle/run_oracle.sh /Users/andrepopovitch/coding/tmp/mlkit-ink/testdata/corpus/trials/digit-9/ink.json /Users/andrepopovitch/coding/tmp/mlkit-ink/testdata/corpus/trials/digit-9/oracle.json
+digit-9: intended='9', top='g', retained=False, rc=0
++ /Users/andrepopovitch/coding/tmp/mlkit-ink/android-oracle/run_oracle.sh /Users/andrepopovitch/coding/tmp/mlkit-ink/testdata/corpus/trials/lower-a/ink.json /Users/andrepopovitch/coding/tmp/mlkit-ink/testdata/corpus/trials/lower-a/oracle.json
+lower-a: intended='a', top='a', retained=True, rc=0
++ /Users/andrepopovitch/coding/tmp/mlkit-ink/android-oracle/run_oracle.sh /Users/andrepopovitch/coding/tmp/mlkit-ink/testdata/corpus/trials/lower-b/ink.json /Users/andrepopovitch/coding/tmp/mlkit-ink/testdata/corpus/trials/lower-b/oracle.json
+lower-b: intended='b', top='b', retained=True, rc=0
++ /Users/andrepopovitch/coding/tmp/mlkit-ink/android-oracle/run_oracle.sh /Users/andrepopovitch/coding/tmp/mlkit-ink/testdata/corpus/trials/lower-c/ink.json /Users/andrepopovitch/coding/tmp/mlkit-ink/testdata/corpus/trials/lower-c/oracle.json
+lower-c: intended='c', top='c', retained=True, rc=0
++ /Users/andrepopovitch/coding/tmp/mlkit-ink/android-oracle/run_oracle.sh /Users/andrepopovitch/coding/tmp/mlkit-ink/testdata/corpus/trials/lower-d/ink.json /Users/andrepopovitch/coding/tmp/mlkit-ink/testdata/corpus/trials/lower-d/oracle.json
+lower-d: intended='d', top='d', retained=True, rc=0
++ /Users/andrepopovitch/coding/tmp/mlkit-ink/android-oracle/run_oracle.sh /Users/andrepopovitch/coding/tmp/mlkit-ink/testdata/corpus/trials/lower-e/ink.json /Users/andrepopovitch/coding/tmp/mlkit-ink/testdata/corpus/trials/lower-e/oracle.json
+lower-e: intended='e', top='e', retained=True, rc=0
++ /Users/andrepopovitch/coding/tmp/mlkit-ink/android-oracle/run_oracle.sh /Users/andrepopovitch/coding/tmp/mlkit-ink/testdata/corpus/trials/lower-f/ink.json /Users/andrepopovitch/coding/tmp/mlkit-ink/testdata/corpus/trials/lower-f/oracle.json
+lower-f: intended='f', top='f', retained=True, rc=0
++ /Users/andrepopovitch/coding/tmp/mlkit-ink/android-oracle/run_oracle.sh /Users/andrepopovitch/coding/tmp/mlkit-ink/testdata/corpus/trials/lower-g/ink.json /Users/andrepopovitch/coding/tmp/mlkit-ink/testdata/corpus/trials/lower-g/oracle.json
+lower-g: intended='g', top='g', retained=True, rc=0
++ /Users/andrepopovitch/coding/tmp/mlkit-ink/android-oracle/run_oracle.sh /Users/andrepopovitch/coding/tmp/mlkit-ink/testdata/corpus/trials/lower-h/ink.json /Users/andrepopovitch/coding/tmp/mlkit-ink/testdata/corpus/trials/lower-h/oracle.json
+lower-h: intended='h', top='h', retained=True, rc=0
++ /Users/andrepopovitch/coding/tmp/mlkit-ink/android-oracle/run_oracle.sh /Users/andrepopovitch/coding/tmp/mlkit-ink/testdata/corpus/trials/lower-i/ink.json /Users/andrepopovitch/coding/tmp/mlkit-ink/testdata/corpus/trials/lower-i/oracle.json
+lower-i: intended='i', top='i', retained=True, rc=0
++ /Users/andrepopovitch/coding/tmp/mlkit-ink/android-oracle/run_oracle.sh /Users/andrepopovitch/coding/tmp/mlkit-ink/testdata/corpus/trials/lower-j/ink.json /Users/andrepopovitch/coding/tmp/mlkit-ink/testdata/corpus/trials/lower-j/oracle.json
+lower-j: intended='j', top='j', retained=True, rc=0
++ /Users/andrepopovitch/coding/tmp/mlkit-ink/android-oracle/run_oracle.sh /Users/andrepopovitch/coding/tmp/mlkit-ink/testdata/corpus/trials/lower-k/ink.json /Users/andrepopovitch/coding/tmp/mlkit-ink/testdata/corpus/trials/lower-k/oracle.json
+lower-k: intended='k', top='k', retained=True, rc=0
++ /Users/andrepopovitch/coding/tmp/mlkit-ink/android-oracle/run_oracle.sh /Users/andrepopovitch/coding/tmp/mlkit-ink/testdata/corpus/trials/lower-l/ink.json /Users/andrepopovitch/coding/tmp/mlkit-ink/testdata/corpus/trials/lower-l/oracle.json
+lower-l: intended='l', top='l', retained=True, rc=0
++ /Users/andrepopovitch/coding/tmp/mlkit-ink/android-oracle/run_oracle.sh /Users/andrepopovitch/coding/tmp/mlkit-ink/testdata/corpus/trials/lower-m/ink.json /Users/andrepopovitch/coding/tmp/mlkit-ink/testdata/corpus/trials/lower-m/oracle.json
+lower-m: intended='m', top='m', retained=True, rc=0
++ /Users/andrepopovitch/coding/tmp/mlkit-ink/android-oracle/run_oracle.sh /Users/andrepopovitch/coding/tmp/mlkit-ink/testdata/corpus/trials/lower-n/ink.json /Users/andrepopovitch/coding/tmp/mlkit-ink/testdata/corpus/trials/lower-n/oracle.json
+lower-n: intended='n', top='n', retained=True, rc=0
++ /Users/andrepopovitch/coding/tmp/mlkit-ink/android-oracle/run_oracle.sh /Users/andrepopovitch/coding/tmp/mlkit-ink/testdata/corpus/trials/lower-o/ink.json /Users/andrepopovitch/coding/tmp/mlkit-ink/testdata/corpus/trials/lower-o/oracle.json
+lower-o: intended='o', top='o', retained=True, rc=0
++ /Users/andrepopovitch/coding/tmp/mlkit-ink/android-oracle/run_oracle.sh /Users/andrepopovitch/coding/tmp/mlkit-ink/testdata/corpus/trials/lower-p/ink.json /Users/andrepopovitch/coding/tmp/mlkit-ink/testdata/corpus/trials/lower-p/oracle.json
+lower-p: intended='p', top='P', retained=False, rc=0
++ /Users/andrepopovitch/coding/tmp/mlkit-ink/android-oracle/run_oracle.sh /Users/andrepopovitch/coding/tmp/mlkit-ink/testdata/corpus/trials/lower-q/ink.json /Users/andrepopovitch/coding/tmp/mlkit-ink/testdata/corpus/trials/lower-q/oracle.json
+lower-q: intended='q', top='a', retained=False, rc=0
++ /Users/andrepopovitch/coding/tmp/mlkit-ink/android-oracle/run_oracle.sh /Users/andrepopovitch/coding/tmp/mlkit-ink/testdata/corpus/trials/lower-r/ink.json /Users/andrepopovitch/coding/tmp/mlkit-ink/testdata/corpus/trials/lower-r/oracle.json
+lower-r: intended='r', top='r', retained=True, rc=0
++ /Users/andrepopovitch/coding/tmp/mlkit-ink/android-oracle/run_oracle.sh /Users/andrepopovitch/coding/tmp/mlkit-ink/testdata/corpus/trials/lower-s/ink.json /Users/andrepopovitch/coding/tmp/mlkit-ink/testdata/corpus/trials/lower-s/oracle.json
+lower-s: intended='s', top='s', retained=True, rc=0
++ /Users/andrepopovitch/coding/tmp/mlkit-ink/android-oracle/run_oracle.sh /Users/andrepopovitch/coding/tmp/mlkit-ink/testdata/corpus/trials/lower-t/ink.json /Users/andrepopovitch/coding/tmp/mlkit-ink/testdata/corpus/trials/lower-t/oracle.json
+lower-t: intended='t', top='t', retained=True, rc=0
++ /Users/andrepopovitch/coding/tmp/mlkit-ink/android-oracle/run_oracle.sh /Users/andrepopovitch/coding/tmp/mlkit-ink/testdata/corpus/trials/lower-u/ink.json /Users/andrepopovitch/coding/tmp/mlkit-ink/testdata/corpus/trials/lower-u/oracle.json
+lower-u: intended='u', top='u', retained=True, rc=0
++ /Users/andrepopovitch/coding/tmp/mlkit-ink/android-oracle/run_oracle.sh /Users/andrepopovitch/coding/tmp/mlkit-ink/testdata/corpus/trials/lower-v/ink.json /Users/andrepopovitch/coding/tmp/mlkit-ink/testdata/corpus/trials/lower-v/oracle.json
+lower-v: intended='v', top='v', retained=True, rc=0
++ /Users/andrepopovitch/coding/tmp/mlkit-ink/android-oracle/run_oracle.sh /Users/andrepopovitch/coding/tmp/mlkit-ink/testdata/corpus/trials/lower-w/ink.json /Users/andrepopovitch/coding/tmp/mlkit-ink/testdata/corpus/trials/lower-w/oracle.json
+lower-w: intended='w', top='w', retained=True, rc=0
++ /Users/andrepopovitch/coding/tmp/mlkit-ink/android-oracle/run_oracle.sh /Users/andrepopovitch/coding/tmp/mlkit-ink/testdata/corpus/trials/lower-x/ink.json /Users/andrepopovitch/coding/tmp/mlkit-ink/testdata/corpus/trials/lower-x/oracle.json
+lower-x: intended='x', top='x', retained=True, rc=0
++ /Users/andrepopovitch/coding/tmp/mlkit-ink/android-oracle/run_oracle.sh /Users/andrepopovitch/coding/tmp/mlkit-ink/testdata/corpus/trials/lower-y/ink.json /Users/andrepopovitch/coding/tmp/mlkit-ink/testdata/corpus/trials/lower-y/oracle.json
+lower-y: intended='y', top='y', retained=True, rc=0
++ /Users/andrepopovitch/coding/tmp/mlkit-ink/android-oracle/run_oracle.sh /Users/andrepopovitch/coding/tmp/mlkit-ink/testdata/corpus/trials/lower-z/ink.json /Users/andrepopovitch/coding/tmp/mlkit-ink/testdata/corpus/trials/lower-z/oracle.json
+lower-z: intended='z', top='z', retained=True, rc=0
++ /Users/andrepopovitch/coding/tmp/mlkit-ink/android-oracle/run_oracle.sh /Users/andrepopovitch/coding/tmp/mlkit-ink/testdata/corpus/trials/word-hi/ink.json /Users/andrepopovitch/coding/tmp/mlkit-ink/testdata/corpus/trials/word-hi/oracle.json
+word-hi: intended='hi', top='hi', retained=True, rc=0
++ /Users/andrepopovitch/coding/tmp/mlkit-ink/android-oracle/run_oracle.sh /Users/andrepopovitch/coding/tmp/mlkit-ink/testdata/corpus/trials/word-cat/ink.json /Users/andrepopovitch/coding/tmp/mlkit-ink/testdata/corpus/trials/word-cat/oracle.json
+word-cat: intended='cat', top='cat', retained=True, rc=0
++ /Users/andrepopovitch/coding/tmp/mlkit-ink/android-oracle/run_oracle.sh /Users/andrepopovitch/coding/tmp/mlkit-ink/testdata/corpus/trials/word-dog/ink.json /Users/andrepopovitch/coding/tmp/mlkit-ink/testdata/corpus/trials/word-dog/oracle.json
+word-dog: intended='dog', top='dog', retained=True, rc=0
++ /Users/andrepopovitch/coding/tmp/mlkit-ink/android-oracle/run_oracle.sh /Users/andrepopovitch/coding/tmp/mlkit-ink/testdata/corpus/trials/word-go/ink.json /Users/andrepopovitch/coding/tmp/mlkit-ink/testdata/corpus/trials/word-go/oracle.json
+word-go: intended='go', top='go', retained=True, rc=0
++ /Users/andrepopovitch/coding/tmp/mlkit-ink/android-oracle/run_oracle.sh /Users/andrepopovitch/coding/tmp/mlkit-ink/testdata/corpus/trials/word-no/ink.json /Users/andrepopovitch/coding/tmp/mlkit-ink/testdata/corpus/trials/word-no/oracle.json
+word-no: intended='no', top='no', retained=True, rc=0
++ /Users/andrepopovitch/coding/tmp/mlkit-ink/android-oracle/run_oracle.sh /Users/andrepopovitch/coding/tmp/mlkit-ink/testdata/corpus/trials/word-on/ink.json /Users/andrepopovitch/coding/tmp/mlkit-ink/testdata/corpus/trials/word-on/oracle.json
+word-on: intended='on', top='on', retained=True, rc=0
++ /Users/andrepopovitch/coding/tmp/mlkit-ink/android-oracle/run_oracle.sh /Users/andrepopovitch/coding/tmp/mlkit-ink/testdata/corpus/trials/word-up/ink.json /Users/andrepopovitch/coding/tmp/mlkit-ink/testdata/corpus/trials/word-up/oracle.json
+word-up: intended='up', top='up', retained=True, rc=0
++ /Users/andrepopovitch/coding/tmp/mlkit-ink/android-oracle/run_oracle.sh /Users/andrepopovitch/coding/tmp/mlkit-ink/testdata/corpus/trials/word-in/ink.json /Users/andrepopovitch/coding/tmp/mlkit-ink/testdata/corpus/trials/word-in/oracle.json
+word-in: intended='in', top='in', retained=True, rc=0
++ /Users/andrepopovitch/coding/tmp/mlkit-ink/android-oracle/run_oracle.sh /Users/andrepopovitch/coding/tmp/mlkit-ink/testdata/corpus/trials/word-it/ink.json /Users/andrepopovitch/coding/tmp/mlkit-ink/testdata/corpus/trials/word-it/oracle.json
+word-it: intended='it', top='it', retained=True, rc=0
++ /Users/andrepopovitch/coding/tmp/mlkit-ink/android-oracle/run_oracle.sh /Users/andrepopovitch/coding/tmp/mlkit-ink/testdata/corpus/trials/word-at/ink.json /Users/andrepopovitch/coding/tmp/mlkit-ink/testdata/corpus/trials/word-at/oracle.json
+word-at: intended='at', top='at', retained=True, rc=0
++ /Users/andrepopovitch/coding/tmp/mlkit-ink/android-oracle/run_oracle.sh /Users/andrepopovitch/coding/tmp/mlkit-ink/testdata/corpus/trials/word-to/ink.json /Users/andrepopovitch/coding/tmp/mlkit-ink/testdata/corpus/trials/word-to/oracle.json
+word-to: intended='to', top='to', retained=True, rc=0
++ /Users/andrepopovitch/coding/tmp/mlkit-ink/android-oracle/run_oracle.sh /Users/andrepopovitch/coding/tmp/mlkit-ink/testdata/corpus/trials/word-an/ink.json /Users/andrepopovitch/coding/tmp/mlkit-ink/testdata/corpus/trials/word-an/oracle.json
+word-an: intended='an', top='an', retained=True, rc=0
++ /Users/andrepopovitch/coding/tmp/mlkit-ink/android-oracle/run_oracle.sh /Users/andrepopovitch/coding/tmp/mlkit-ink/testdata/corpus/trials/word-me/ink.json /Users/andrepopovitch/coding/tmp/mlkit-ink/testdata/corpus/trials/word-me/oracle.json
+word-me: intended='me', top='me', retained=True, rc=0
++ /Users/andrepopovitch/coding/tmp/mlkit-ink/android-oracle/run_oracle.sh /Users/andrepopovitch/coding/tmp/mlkit-ink/testdata/corpus/trials/word-we/ink.json /Users/andrepopovitch/coding/tmp/mlkit-ink/testdata/corpus/trials/word-we/oracle.json
+word-we: intended='we', top='we', retained=True, rc=0
++ /Users/andrepopovitch/coding/tmp/mlkit-ink/android-oracle/run_oracle.sh /Users/andrepopovitch/coding/tmp/mlkit-ink/testdata/corpus/trials/word-he/ink.json /Users/andrepopovitch/coding/tmp/mlkit-ink/testdata/corpus/trials/word-he/oracle.json
+word-he: intended='he', top='he', retained=True, rc=0
++ /Users/andrepopovitch/coding/tmp/mlkit-ink/android-oracle/run_oracle.sh /Users/andrepopovitch/coding/tmp/mlkit-ink/testdata/corpus/trials/word-be/ink.json /Users/andrepopovitch/coding/tmp/mlkit-ink/testdata/corpus/trials/word-be/oracle.json
+word-be: intended='be', top='be', retained=True, rc=0
++ /Users/andrepopovitch/coding/tmp/mlkit-ink/android-oracle/run_oracle.sh /Users/andrepopovitch/coding/tmp/mlkit-ink/testdata/corpus/trials/word-do/ink.json /Users/andrepopovitch/coding/tmp/mlkit-ink/testdata/corpus/trials/word-do/oracle.json
+word-do: intended='do', top='do', retained=True, rc=0
++ /Users/andrepopovitch/coding/tmp/mlkit-ink/android-oracle/run_oracle.sh /Users/andrepopovitch/coding/tmp/mlkit-ink/testdata/corpus/trials/word-so/ink.json /Users/andrepopovitch/coding/tmp/mlkit-ink/testdata/corpus/trials/word-so/oracle.json
+word-so: intended='so', top='so', retained=True, rc=0
++ /Users/andrepopovitch/coding/tmp/mlkit-ink/android-oracle/run_oracle.sh /Users/andrepopovitch/coding/tmp/mlkit-ink/testdata/corpus/trials/word-sun/ink.json /Users/andrepopovitch/coding/tmp/mlkit-ink/testdata/corpus/trials/word-sun/oracle.json
+word-sun: intended='sun', top='Sun', retained=False, rc=0
++ /Users/andrepopovitch/coding/tmp/mlkit-ink/android-oracle/run_oracle.sh /Users/andrepopovitch/coding/tmp/mlkit-ink/testdata/corpus/trials/word-the/ink.json /Users/andrepopovitch/coding/tmp/mlkit-ink/testdata/corpus/trials/word-the/oracle.json
+word-the: intended='the', top='the', retained=True, rc=0
++ /Users/andrepopovitch/coding/tmp/mlkit-ink/android-oracle/run_oracle.sh /Users/andrepopovitch/coding/tmp/mlkit-ink/testdata/corpus/trials/word-and/ink.json /Users/andrepopovitch/coding/tmp/mlkit-ink/testdata/corpus/trials/word-and/oracle.json
+word-and: intended='and', top='and', retained=True, rc=0
+{
+  "retained": 74,
+  "rejected": 12,
+  "pending": 0,
+  "retained_top1_intended_agreement": "74/74",
+  "distinct_single_character_labels": [
+    "0",
+    "1",
+    "2",
+    "3",
+    "4",
+    "5",
+    "6",
+    "7",
+    "8",
+    "A",
+    "B",
+    "D",
+    "E",
+    "F",
+    "G",
+    "H",
+    "I",
+    "J",
+    "K",
+    "L",
+    "M",
+    "N",
+    "P",
+    "Q",
+    "R",
+    "T",
+    "Y",
+    "a",
+    "b",
+    "c",
+    "d",
+    "e",
+    "f",
+    "g",
+    "h",
+    "i",
+    "j",
+    "k",
+    "l",
+    "m",
+    "n",
+    "o",
+    "r",
+    "s",
+    "t",
+    "u",
+    "v",
+    "w",
+    "x",
+    "y",
+    "z"
+  ],
+  "retained_short_words": 23
+}

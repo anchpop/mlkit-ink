@@ -1,0 +1,14 @@
+{
+  "command": [
+    "/Users/andrepopovitch/coding/tmp/mlkit-ink/android-oracle/run_oracle.sh",
+    "/Users/andrepopovitch/coding/tmp/mlkit-ink/testdata/corpus/trials/word-be/ink.json",
+    "/Users/andrepopovitch/coding/tmp/mlkit-ink/testdata/corpus/trials/word-be/oracle.json"
+  ],
+  "command_shell": "/Users/andrepopovitch/coding/tmp/mlkit-ink/android-oracle/run_oracle.sh /Users/andrepopovitch/coding/tmp/mlkit-ink/testdata/corpus/trials/word-be/ink.json /Users/andrepopovitch/coding/tmp/mlkit-ink/testdata/corpus/trials/word-be/oracle.json",
+  "started_utc": "2026-09-15T06:17:10.307794+00:00",
+  "finished_utc": "2026-09-15T06:17:15.442257+00:00",
+  "returncode": 0,
+  "raw_oracle_response": "trials/word-be/oracle.json",
+  "stdout": "trials/word-be/stdout.log",
+  "stderr": "trials/word-be/stderr.log"
+}

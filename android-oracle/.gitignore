@@ -1,0 +1,7 @@
+.gradle/
+build/
+app/build/
+local.properties
+ink_output.json
+*.log
+.oracle-lock/

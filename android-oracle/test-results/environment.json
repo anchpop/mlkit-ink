@@ -1,0 +1,15 @@
+{
+  "deviceSerial": "45241FDAS000WM",
+  "buildFingerprint": "Android/aosp_komodo/komodo:15/BP1A.250505.005.D1/202608252016:userdebug/dev-keys",
+  "googlePlayServices": "versionName=26.33.32 (260400-974685114)\n    versionName=26.24.34 (260400-938041327)",
+  "java": "openjdk version \"26.0.2.1\" 2026-08-18\nOpenJDK Runtime Environment Homebrew (build 26.0.2.1)\nOpenJDK 64-Bit Server VM Homebrew (build 26.0.2.1, mixed mode, sharing)",
+  "gradle": "9.7.1",
+  "androidGradlePlugin": "9.4.0",
+  "mlkitDigitalInkRecognition": "19.0.0",
+  "compileSdk": 35,
+  "targetSdk": 35,
+  "minSdk": 30,
+  "apkSha256": "5f39d0b06efc640c5661a7463089a405ee3a2fc9f1f2551169442f7ea8c1d72f",
+  "recognitionContext": "SDK defaults; no writing area or pre-context",
+  "scoreSemantics": "SDK getScore() value, including null if unsupported; no normalization"
+}

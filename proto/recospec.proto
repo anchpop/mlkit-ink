@@ -1,0 +1,226 @@
+syntax = "proto2";
+
+import "google/protobuf/timestamp.proto";
+
+// Recovered from all 391 manifest recospecs and libdigitalink.so (19.0.0).
+// Only observed fields or fields independently verified in native code are typed.
+// UNKNOWN means the original field name/meaning or type has NOT been recovered.
+// Field/member spellings are descriptive unless explicitly tied to native
+// accessors below; recovered message names and numeric settings bindings are exact.
+// Unresolved varints use uint64: original bool/enum/signedness is UNKNOWN,
+// and treating an unknown integer as bool would destroy values other than 0/1.
+// Round-tripping verifies wire compatibility, not semantic names or CTC behavior.
+//
+// Namespace wrapper messages let this single source file reproduce the exact
+// research_handwriting.*, speech_decoder.* and aksara.* fully-qualified names.
+// The wrappers themselves are organizational, not messages found in the library.
+message research_handwriting {
+  message RecognizerSpec {
+    optional string recognizer_type = 1;
+    repeated string language = 2; // Includes both "en" and "en_us"; NOT singular.
+    optional string normalization = 27;
+    optional uint64 unknown_51 = 51; // UNKNOWN: scribe only, always 1.
+    optional uint64 unknown_52 = 52; // UNKNOWN: scribe only, always 1.
+    optional google.protobuf.Timestamp unknown_54 = 54; // UNKNOWN original type/name; timestamp-shaped.
+    extensions 158518157 to 158518157;
+  }
+  extend RecognizerSpec {
+    optional TfRecognizerSpec tf_recognizer_spec = 158518157;
+  }
+  message TfRecognizerSpec {
+    optional ProcessorConfig processor = 2;
+    optional ModelConfig model = 3;
+    optional DecoderConfig decoder = 4;
+    optional uint64 unknown_8 = 8; // UNKNOWN: 50000 in all scribe models.
+  }
+  message ProcessorConfig {
+    repeated string charset = 1; // 313 entries for Latin, no CTC blank.
+    optional RawSettings raw_settings = 4;
+    optional CurveSettings curve_settings = 6;
+    optional int32 num_features = 7;
+    optional string normalization = 8;
+    optional InkPreprocessorSpec preprocessing = 12;
+    optional string processor_type = 13;
+  }
+  message RawSettings {
+    optional uint64 unknown_1 = 1; // UNKNOWN
+    optional uint64 unknown_2 = 2; // UNKNOWN
+    optional uint64 unknown_3 = 3; // UNKNOWN
+    optional uint64 unknown_4 = 4; // UNKNOWN
+    optional uint64 unknown_5 = 5; // UNKNOWN
+    optional uint64 unknown_6 = 6; // UNKNOWN
+  }
+  message CurveSettings {
+    // Native constructor/serializer 0x5d52bc/0x5d5366 verify types and defaults.
+    // Corpus: first five fields are .05,.02,.01,3,-.8 in ALL 389 curve packs.
+    optional double unknown_1 = 1 [default = 0.05]; // UNKNOWN original field name.
+    optional double unknown_2 = 2 [default = 0.02]; // UNKNOWN original field name.
+    optional double unknown_3 = 3 [default = 0.01]; // UNKNOWN original field name.
+    optional double unknown_4 = 4 [default = 4]; // UNKNOWN: corpus explicitly sets 3.
+    optional double unknown_5 = 5 [default = -0.9]; // UNKNOWN: corpus explicitly sets -.8.
+    optional bool generate_second_order_features = 6 [default = false];
+    optional bool unknown_7 = 7 [default = false]; // UNKNOWN name; selects angles/ratios encoder.
+    // Field 8 absent from native serializer and corpus.
+    optional bool interpolate_time = 9 [default = false];
+    optional bool normalize_outputs_to_zero_one = 10 [default = false];
+    optional bool unknown_11 = 11 [default = false]; // UNKNOWN, absent from corpus.
+    optional bool unknown_12 = 12 [default = false]; // UNKNOWN, absent from corpus.
+    optional int32 unknown_13 = 13 [default = 80]; // UNKNOWN, absent from corpus.
+  }
+  message InkPreprocessorSpec {
+    repeated InkPreprocessingStepSpec steps = 1;
+  }
+  message StrokeOrderSettings {} // UNKNOWN fields; not exercised by catalog.
+  message InkPreprocessingStepSpec {
+    // The native oneof registry, not similarity of numeric values, identifies
+    // settings types. Detailed evidence is recorded beside each branch below.
+    message ResamplingSettings {
+      optional float unknown_1 = 1; // UNKNOWN: .05 in emoji/autodraw.
+      optional float unknown_2 = 2; // UNKNOWN: 20 in emoji/autodraw.
+    }
+    message NormalizeSizeSettings {
+      optional float unknown_1 = 1; // UNKNOWN: 0.
+      optional uint64 unknown_2 = 2; // UNKNOWN: 1.
+    }
+    message NormalizeSizeByTimeSettings {} // UNKNOWN fields; absent from corpus.
+    message SanitizeTimeSettings {
+      optional float unknown_1 = 1; // UNKNOWN: .5.
+      optional float unknown_2 = 2; // UNKNOWN: 20.
+      optional uint64 unknown_3 = 3; // UNKNOWN: 0.
+    }
+    message HallucinateTimeSettings {
+      optional float unknown_1 = 1; // UNKNOWN exact name: 20, NOT evidence of resampling.
+      optional uint64 unknown_2 = 2; // UNKNOWN: 0.
+    }
+    message NormalizeSizeFirstStrokeSettings {} // UNKNOWN fields; absent from corpus.
+    message NormalizeSizeWritingGuideFirstStrokeSettings {
+      optional float unknown_1 = 1; // UNKNOWN: 0.
+      optional uint64 unknown_2 = 2; // UNKNOWN: 1.
+      optional float unknown_3 = 3; // UNKNOWN: .5.
+    }
+    message NormalizeTimeBySizeSettings {} // UNKNOWN fields; absent from corpus.
+    message FilterStrokesSettings {
+      optional uint64 unknown_1 = 1; // UNKNOWN: 1 in scribe.
+    }
+    message RamerResamplingSettings {} // UNKNOWN fields; absent from corpus.
+    message ResamplingByTimeSettings {} // UNKNOWN fields; absent from corpus.
+    message ResamplePenupStrokesSettings {} // UNKNOWN fields; absent from corpus.
+    message NormalizeMultilineSizeSettings {} // UNKNOWN fields; absent from corpus.
+    message InkBasedSlopeCorrectionSettings {} // UNKNOWN fields; absent from corpus.
+    message DetectAndRearrangeMultiLineSettings {} // UNKNOWN fields; absent from corpus.
+    message ScaleShiftForRenderingSettings {
+      message ConditionalHeightWidthSettings {} // UNKNOWN fields; absent from corpus.
+    }
+    message SetWritingGuideSettings {} // UNKNOWN fields; absent from corpus.
+    message WritingGuideFromBoundingBoxSettings {} // UNKNOWN fields; absent from corpus.
+    message RandomizeInkPositionWithinWritingGuideSettings {} // UNKNOWN fields; absent from corpus.
+    // UNKNOWN original target name: these are message-typed fields backed by
+    // proto2::internal::ImplicitWeakMessage (native parse kind 0x636), not bytes.
+    message UNKNOWN_WeakSettings {}
+    // Native x86 table 0x85a858: entries 0x85a8a4 stride 12; auxiliary table
+    // 0x85aa10 stride 8. Factory registry initializer 0x5af4de independently
+    // ties the field numbers to step class names. All 30 mappings are verified.
+    // Observed corpus branches: 1,2,4,5,6,8,10,11,12,17,18,19.
+    // Empty concrete settings below have UNKNOWN unobserved fields.
+    oneof step {
+      ResamplingSettings resampling = 1;
+      NormalizeSizeSettings normalize_size = 2;
+      StrokeOrderSettings sort_strokes = 3;
+      SanitizeTimeSettings sanitize_time = 4;
+      UNKNOWN_WeakSettings normalize_time = 5;
+      HallucinateTimeSettings hallucinate_time = 6;
+      InkBasedSlopeCorrectionSettings ink_based_slope_correction = 7;
+      NormalizeSizeWritingGuideFirstStrokeSettings normalize_size_writing_guide_first_stroke = 8;
+      DetectAndRearrangeMultiLineSettings detect_and_rearrange_multi_line = 9;
+      UNKNOWN_WeakSettings remove_pressure = 10;
+      UNKNOWN_WeakSettings add_pen_up_strokes = 11;
+      UNKNOWN_WeakSettings time_ms_to_s = 12;
+      RamerResamplingSettings ramer_resampling = 13;
+      ResamplingByTimeSettings resampling_by_time = 14;
+      NormalizeTimeBySizeSettings normalize_time_by_size = 15;
+      NormalizeMultilineSizeSettings normalize_multiline_size = 16;
+      FilterStrokesSettings filter_strokes = 17;
+      UNKNOWN_WeakSettings remove_time = 18;
+      UNKNOWN_WeakSettings remove_guide = 19;
+      UNKNOWN_WeakSettings normalize_size_for_scribe = 20;
+      NormalizeSizeByTimeSettings normalize_size_by_time = 21;
+      UNKNOWN_WeakSettings start_at_origin = 22;
+      ResamplePenupStrokesSettings resample_penup_strokes = 23;
+      UNKNOWN_WeakSettings remove_time_order = 24;
+      ScaleShiftForRenderingSettings scale_shift_for_rendering = 25;
+      UNKNOWN_WeakSettings shift_ink_based_on_writing_guide = 26;
+      WritingGuideFromBoundingBoxSettings writing_guide_from_bounding_box = 27;
+      SetWritingGuideSettings set_writing_guide = 28;
+      RandomizeInkPositionWithinWritingGuideSettings randomize_ink_position_within_writing_guide = 29;
+      NormalizeSizeFirstStrokeSettings normalize_size_first_stroke = 30;
+    }
+  }
+
+  message ModelConfig {
+    optional TfLiteModelConfig tflite = 5;
+  }
+  message TfLiteModelConfig {
+    optional string model_path = 1;
+    optional uint64 unknown_2 = 2; // UNKNOWN: 0.
+    optional uint64 unknown_3 = 3; // UNKNOWN: 0.
+    optional uint64 unknown_4 = 4; // UNKNOWN: 1.
+  }
+  message DecoderConfig {
+    optional uint64 unknown_1 = 1; // UNKNOWN: result-count-shaped (10 or 20).
+    optional ArgMaxDecoderConfig argmax = 4;
+    optional FstDecoderConfig fst = 6;
+  }
+  message ArgMaxDecoderConfig {
+    optional uint64 unknown_1 = 1; // UNKNOWN: 1.
+  }
+  message FstDecoderConfig {
+    // Parser/RTTI chain 0x856e8c -> 0x856f40 -> 0x857740 -> 0x83c528.
+    optional speech_decoder.FstSearchParams search = 1;
+    optional WordLmFst word_lm = 3;
+    optional float unknown_7 = 7; // UNKNOWN: positive, language-dependent LM-weight-shaped.
+    optional uint64 unknown_8 = 8; // UNKNOWN: 1.
+    optional CharClassesBeamScorerSpec char_classes = 9;
+    optional float unknown_10 = 10; // UNKNOWN: language-dependent score/weight.
+    optional uint64 unknown_11 = 11; // UNKNOWN: 0 for zh, 1 for en-US.
+    optional uint64 unknown_12 = 12; // UNKNOWN enum or integer: 2.
+    message WordLmFst {
+      optional string path = 1;
+      optional string symbol_table = 4;
+    }
+    message CharLmFst {} // UNKNOWN, absent from corpus.
+    message RegexpFst {} // UNKNOWN, absent from corpus.
+  }
+  message CharClassesBeamScorerSpec {
+    optional string language = 1;
+    // Parser/RTTI chain 0x857020 -> 0x857048 -> 0x85b778 -> 0x83fbf8.
+    optional aksara.DecoderWeights weights = 2;
+    optional string char_class_table = 4;
+  }
+}
+message aksara {
+  message DecoderWeights {
+    repeated Weight weights = 1;
+    optional double unknown_2 = 2; // UNKNOWN: 0.
+    message Weight {
+      optional string name = 1;
+      optional double value = 2;
+    }
+  }
+}
+message speech_decoder {
+  message FstSearchParams {
+    optional uint64 unknown_1 = 1; // UNKNOWN exact name: active-hypothesis-cap-shaped, 1000.
+    optional float unknown_2 = 2; // UNKNOWN: beam-width-shaped, 10.
+    optional float unknown_4 = 4; // UNKNOWN: 20.
+    optional float unknown_5 = 5; // UNKNOWN: only four Chinese recospecs.
+    optional float unknown_7 = 7; // UNKNOWN: language-dependent score.
+    optional uint64 unknown_11 = 11; // UNKNOWN: 0.
+    optional uint64 unknown_12 = 12; // UNKNOWN: 10.
+    optional uint64 unknown_15 = 15; // UNKNOWN: 8.
+    optional float unknown_20 = 20; // UNKNOWN: 20.
+    optional uint64 unknown_23 = 23; // UNKNOWN: present in 269 packs, 5.
+    optional uint64 unknown_26 = 26; // UNKNOWN: 0.
+    optional uint64 unknown_34 = 34; // UNKNOWN: present in 269 packs, 3.
+    optional bytes unknown_240968982 = 240968982; // UNKNOWN extension message {3:10}, 360 packs.
+  }
+}

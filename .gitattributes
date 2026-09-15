@@ -1,0 +1,11 @@
+# Everything originating from Google's shipped binaries is encrypted at rest (git-crypt, yap key).
+# Nothing here is authored by us: the model archives, the catalog lifted from the AAR, and the
+# strings/decodes extracted from libdigitalink.so. Our own source, tests, corpus and writeups
+# are plaintext.
+models/**/*.zip                 filter=git-crypt diff=git-crypt
+models/*.zip                    filter=git-crypt diff=git-crypt
+/manifest.json                  filter=git-crypt diff=git-crypt
+/packmapping.pb                 filter=git-crypt diff=git-crypt
+evidence/*.local                filter=git-crypt diff=git-crypt
+evidence/libdigitalink.strings.txt filter=git-crypt diff=git-crypt
+evidence/en_us.recospec.raw.txt filter=git-crypt diff=git-crypt

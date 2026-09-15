@@ -1,0 +1,1 @@
+{"status":"error","inputSha256":"f941c5617ff5e1da9fc51b53c467084aafe9b26713ae036dca8d386e2b05bb7f","language":"en-US","modelIdentifier":null,"candidates":[],"error":{"stage":"validate_input","type":"java.lang.NumberFormatException","message":"For input string: \"1.5\""}}

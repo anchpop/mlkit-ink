@@ -1,0 +1,14 @@
+{
+  "command": [
+    "/Users/andrepopovitch/coding/tmp/mlkit-ink/android-oracle/run_oracle.sh",
+    "/Users/andrepopovitch/coding/tmp/mlkit-ink/testdata/corpus/trials/lower-t/ink.json",
+    "/Users/andrepopovitch/coding/tmp/mlkit-ink/testdata/corpus/trials/lower-t/oracle.json"
+  ],
+  "command_shell": "/Users/andrepopovitch/coding/tmp/mlkit-ink/android-oracle/run_oracle.sh /Users/andrepopovitch/coding/tmp/mlkit-ink/testdata/corpus/trials/lower-t/ink.json /Users/andrepopovitch/coding/tmp/mlkit-ink/testdata/corpus/trials/lower-t/oracle.json",
+  "started_utc": "2026-09-15T06:15:05.252009+00:00",
+  "finished_utc": "2026-09-15T06:15:10.226877+00:00",
+  "returncode": 0,
+  "raw_oracle_response": "trials/lower-t/oracle.json",
+  "stdout": "trials/lower-t/stdout.log",
+  "stderr": "trials/lower-t/stderr.log"
+}

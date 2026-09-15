@@ -1,0 +1,27 @@
+# --- Google's model artifacts ---
+# The .zip archives ARE committed (git-crypt encrypted, see .gitattributes): they are the
+# canonical sha1-verified downloads, and src/fetch_pack.py extracts from them deterministically,
+# so a fresh clone works offline with no re-download.
+# Their EXTRACTED contents are not committed -- that would trebly duplicate a 21MB FST.
+models/**/*.local
+models/**/*.tflite
+models/*.local
+models/*.tflite
+
+# Device-pulled copies, proven byte-identical to the archives above (see oracle-models/manifest.json,
+# which IS kept as the proof).
+oracle-models/**
+!oracle-models/manifest.json
+
+# --- local environment / build output ---
+.venv/
+__pycache__/
+*.pyc
+android-oracle/build/
+android-oracle/app/build/
+android-oracle/.gradle/
+android-oracle/local.properties
+android-oracle/**/*.apk
+
+# --- working scratch, not part of the deliverable ---
+scratch/

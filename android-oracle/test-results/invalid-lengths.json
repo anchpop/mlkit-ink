@@ -1,0 +1,1 @@
+{"status":"error","inputSha256":"1b537dcce66335be01ac783335e02142a1faedfe290eba167366d5a5ba276f6a","language":"en-US","modelIdentifier":null,"candidates":[],"error":{"stage":"validate_input","type":"java.lang.IllegalArgumentException","message":"strokes[0]: x and y must have the same nonzero length"}}

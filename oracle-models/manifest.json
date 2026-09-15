@@ -1,0 +1,59 @@
+{
+  "deviceSerial": "45241FDAS000WM",
+  "buildFingerprint": "Android/aosp_komodo/komodo:15/BP1A.250505.005.D1/202608252016:userdebug/dev-keys",
+  "files": [
+    {
+      "devicePath": "/data/user/0/dev.inkoracle/files/mlkit_digital_ink_recognition/shared/datadownload/public/datadownloadfile_1789450984971/latin_indy_lstm_6x216_20191208.tflite",
+      "dataDataAlias": "/data/data/dev.inkoracle/files/mlkit_digital_ink_recognition/shared/datadownload/public/datadownloadfile_1789450984971/latin_indy_lstm_6x216_20191208.tflite",
+      "localPath": "/Users/andrepopovitch/coding/tmp/mlkit-ink/oracle-models/device/files/mlkit_digital_ink_recognition/shared/datadownload/public/datadownloadfile_1789450984971/latin_indy_lstm_6x216_20191208.tflite",
+      "size": 3992904,
+      "sha1": "73921a15880091ad9ab11263972b4611e657ddca"
+    },
+    {
+      "devicePath": "/data/user/0/dev.inkoracle/files/mlkit_digital_ink_recognition/shared/datadownload/public/datadownloadfile_1789450985694/qrnn.en_us.reco_20200318.fst_20191208.recospec.local",
+      "dataDataAlias": "/data/data/dev.inkoracle/files/mlkit_digital_ink_recognition/shared/datadownload/public/datadownloadfile_1789450985694/qrnn.en_us.reco_20200318.fst_20191208.recospec.local",
+      "localPath": "/Users/andrepopovitch/coding/tmp/mlkit-ink/oracle-models/device/files/mlkit_digital_ink_recognition/shared/datadownload/public/datadownloadfile_1789450985694/qrnn.en_us.reco_20200318.fst_20191208.recospec.local",
+      "size": 3929,
+      "sha1": "64dbdcd56f542d615f1925ab08f2fb33cfe4f132"
+    },
+    {
+      "devicePath": "/data/user/0/dev.inkoracle/files/mlkit_digital_ink_recognition/shared/datadownload/public/datadownloadfile_1789450985695/en_us.compact.fst.local",
+      "dataDataAlias": "/data/data/dev.inkoracle/files/mlkit_digital_ink_recognition/shared/datadownload/public/datadownloadfile_1789450985695/en_us.compact.fst.local",
+      "localPath": "/Users/andrepopovitch/coding/tmp/mlkit-ink/oracle-models/device/files/mlkit_digital_ink_recognition/shared/datadownload/public/datadownloadfile_1789450985695/en_us.compact.fst.local",
+      "size": 21798892,
+      "sha1": "42674c4eda1a0d8efc18d6948fd48d7a5727b162"
+    }
+  ],
+  "referenceComparisons": [
+    {
+      "archive": "/Users/andrepopovitch/coding/tmp/mlkit-ink/oracle-models/reference/en_us.20191208.compact.fst.zip",
+      "archiveSha1": "9f1c95b8e0604cdf72bd326b3a913102626bb854",
+      "member": "en_us.compact.fst.local",
+      "size": 21798892,
+      "sha1": "42674c4eda1a0d8efc18d6948fd48d7a5727b162",
+      "byteIdenticalDevicePaths": [
+        "/data/user/0/dev.inkoracle/files/mlkit_digital_ink_recognition/shared/datadownload/public/datadownloadfile_1789450985695/en_us.compact.fst.local"
+      ]
+    },
+    {
+      "archive": "/Users/andrepopovitch/coding/tmp/mlkit-ink/oracle-models/reference/indy_lstm.latin.6x216.tflite.20191208.zip",
+      "archiveSha1": "27cfb1b5a7e5a4dee7ba6c07aaea9c3343b34ee4",
+      "member": "latin_indy_lstm_6x216_20191208.tflite",
+      "size": 3992904,
+      "sha1": "73921a15880091ad9ab11263972b4611e657ddca",
+      "byteIdenticalDevicePaths": [
+        "/data/user/0/dev.inkoracle/files/mlkit_digital_ink_recognition/shared/datadownload/public/datadownloadfile_1789450984971/latin_indy_lstm_6x216_20191208.tflite"
+      ]
+    },
+    {
+      "archive": "/Users/andrepopovitch/coding/tmp/mlkit-ink/oracle-models/reference/qrnn.en_us.reco_20200318.fst_20191208.recospec.zip",
+      "archiveSha1": "dcc0fcc19e8801e30d8c32309d762d0b5926cf12",
+      "member": "qrnn.en_us.reco_20200318.fst_20191208.recospec.local",
+      "size": 3929,
+      "sha1": "64dbdcd56f542d615f1925ab08f2fb33cfe4f132",
+      "byteIdenticalDevicePaths": [
+        "/data/user/0/dev.inkoracle/files/mlkit_digital_ink_recognition/shared/datadownload/public/datadownloadfile_1789450985694/qrnn.en_us.reco_20200318.fst_20191208.recospec.local"
+      ]
+    }
+  ]
+}
