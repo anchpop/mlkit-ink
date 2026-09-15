@@ -1,0 +1,13 @@
+[toolchain]
+channel = "1.98.1"
+# The core crate is pure Rust with no platform dependencies, so these all build
+# from the same source. They are listed here so `cargo check --target ...`
+# works on a fresh clone without hunting for the right `rustup target add`.
+targets = [
+    "wasm32-unknown-unknown",
+    "aarch64-apple-ios",
+    "aarch64-apple-ios-sim",
+    "aarch64-linux-android",
+    "armv7-linux-androideabi",
+    "x86_64-linux-android",
+]

@@ -1,0 +1,29 @@
+[package]
+name = "mlkit-ink"
+description = "ML Kit Digital Ink Recognition, reimplemented outside the SDK"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+repository.workspace = true
+
+[dependencies]
+libm = { version = "0.2.16", optional = true }
+serde = { version = "1", features = ["derive"], optional = true }
+
+[dev-dependencies]
+# `float_roundtrip` so a golden score parses back to the exact f64 that was
+# written. Without it serde_json's fast path is off by an ulp, which is enough
+# to break the exact per-step FST cost assertions.
+serde_json = { version = "1", features = ["float_roundtrip"] }
+
+[features]
+default = ["std"]
+# The core is pure computation over borrowed bytes. `std` supplies float math
+# (sqrt/atan2/exp live in std, not core) and `Error` impls; wasm, iOS and
+# Android all have it, so this is the supported configuration.
+std = []
+# Pure-Rust float math for bare-metal targets instead. Not oracle-validated:
+# it differs from the platform libm in the last ulp. See src/float.rs.
+libm = ["dep:libm"]
+serde = ["dep:serde"]

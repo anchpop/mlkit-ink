@@ -920,9 +920,110 @@ We ship the faithful values anyway:
   + f10)`). We assume 1.0. If it is not 1.0, our LM-to-acoustic balance is wrong by that factor no
   matter how correct the LM-internal weights are — so "faithful" is currently *partial*.
 
-**Recovering `acoustic_scale` is the single highest-value open thread.** Until then the empirical
-values remain available:
+**Recovering `acoustic_scale` was the single highest-value open thread.** It is now half resolved:
+the mechanism is proven and the value is still unknown. See §20. Until the value is known, the
+empirical values remain available:
 
     Recognizer.recognize(..., lm_weight=1.0, char_class_weight=-1.0)
 
 Greedy decoding is unaffected by all of this and remains **74/74**.
+
+
+## 20. `acoustic_scale`: mechanism proven, value still unknown
+
+Full trace in `evidence/acoustic_scale_investigation.md` (arm64-v8a, md5
+`600612f063fc34ea00171f8290d17187`), reached through C++ RTTI — typeinfo name to typeinfo object to
+vtable to virtual method — rather than by following §19's address.
+
+### It scales every acoustic score, not just the pre-space penalty (PROVEN)
+
+`NetworkScoreCache`'s base per-frame/per-label score accessor at `0x42ed14` ends:
+
+    0x42ed74  ldr  s0, [x20, 0x24]        ; -acoustic_scale
+    0x42ed84  ldr  s1, [x8, w19, uxtw 2]  ; raw net output[frame*stride + label]
+    0x42ed88  fmul s8, s0, s1             ; cost = -acoustic_scale * posterior
+
+The multiplier is read straight out of the network's output array's accessor, so **every** ordinary
+frame/label acoustic score passes through it, and the LM and char-class costs of §17 do not. §19's
+worry was therefore correct and is now located precisely: if the scale is not 1.0, our
+acoustic-to-LM balance is off by exactly that factor.
+
+The same field `+0x24` appears in `PreSpaceAwareNetworkScoreCache`'s override at
+`0x4152b0..0x4152dc`, which is where §18 originally found the formula.
+
+### The value is UNDETERMINED
+
+`acoustic_scale` is a runtime float field of a `FstDecoder` instance, read at `0x4084ec` as
+`ldr s8, [x22, #0x90]` and passed pre-negated into the score cache's constructor
+(`0x41547c`/`0x415490`). `FstDecoder`'s constructor (`0x40b7e8`) `memset`s `[0x20, 0x120)` to zero,
+which covers `+0x90`, and never writes it again. No instruction anywhere in `.text` stores a value
+to that offset: the only four float stores to any `+0x90` are struct-copy propagations of an
+existing value, not an origin. So there must be a configure/`Init` path that was not located, and
+neither the value nor its default is recoverable from this analysis.
+
+`0.0` is implausible — it would zero every acoustic score — but that is reasoning, not evidence.
+
+### A correction to §18/§19's addressing
+
+`0x4f1182..0x4f118c`, cited in §18 and §19 as the pre-space penalty site, is in this build a C++
+exception cleanup landing pad: `bl`/`b` into destructor thunks, with no floating-point instruction
+anywhere in `0x4f0000..0x4f2000` except unrelated ones hundreds of bytes away. The binary does have
+a populated `.gcc_except_table`, consistent with that reading. The formula those sections describe
+is real and is at `0x4152b0`; only the address was wrong. The verified §18 site `0x4ea5dc` still
+disassembles as described, so the file-offset/vaddr scheme itself is sound.
+
+### Sweeping it — and one way to sweep it wrongly
+
+The scale multiplies the acoustic side and the §17 weights multiply the LM side, so only their
+ratio matters and the unknown is one dimension, not three. That makes it sweepable rather than
+guessable.
+
+**It must be applied to the per-frame log probabilities, before the alignment sum.** Folding it
+into the LM weights instead looks equivalent — same ratio — and is not, because CTC sums over
+alignments:
+
+    a * logsumexp(x)  !=  logsumexp(a * x)
+
+The two agree only when a single alignment dominates, which is exactly not the case on the
+ambiguous inputs that decide the corpus. The first version of this sweep took that shortcut and
+produced a qualitatively different, wrong answer (a plateau at 71/74 from `a >= 1.23`). This is
+§13's lesson again, in a new costume: a plausible number from the wrong mechanism.
+
+`tools/sweep_acoustic_scale.py` is the reference generator; results in
+`evidence/acoustic_scale_sweep.json`. `rust/crates/mlkit-ink-cli/examples/acoustic_sweep.rs` does
+the same sweep about a hundred times faster, and the two agree exactly on every scale both ran —
+which is also an independent check of the Rust decoder's `acoustic_scale` against the Python's.
+LM-side weights are held at their recovered native values throughout.
+
+| `acoustic_scale` | total | singles | words | ranking misses | truth absent from n-best |
+|---:|---:|---:|---:|---:|---:|
+| 0.50 | 62/74 | 42/51 | 20/23 | 11 | 1 |
+| 0.75 | 67/74 | 46/51 | 21/23 | 7 | 0 |
+| **1.00** *(what we ship)* | **68/74** | 47/51 | 21/23 | 6 | 0 |
+| 1.25 – 6.00 | 71/74 | 49/51 | 22/23 | 3 | 0 |
+| 8.00, 12.00 | 73/74 | 50/51 | 23/23 | 1 | 0 |
+
+### What the sweep does and does not establish
+
+**Every miss is a ranking failure, not a rejection.** Except at `a = 0.5`, the correct transcript
+is always present in the n-best and merely ranked below something else. An earlier draft of this
+section claimed three inks were unreachable because the FST refused them; that was wrong, and the
+committed goldens contradict it — `s`, `y` and `so` all appear as finite-score second candidates.
+
+**The curve is monotone all the way to the edge of what was sampled.** It does not peak. It rises
+to 73/74 and stays there, and 74/74 is what pure greedy decoding — no FST at all — already
+achieves. A parameter whose optimum sits at the boundary of the search is the signature of a
+**missing mechanism, not a mis-set constant**: the sweep is rewarding "use less of our language
+model", which is what you would expect if our LM integration is incomplete rather than if Google
+shipped a large scale. We do not implement `PreSpaceAwareNetworkScoreCache`'s synthetic leading
+space (§18), and native's pruning semantics remain unknown; either could be absorbed into this
+one knob.
+
+So: **no value is read off this curve, and none should be.** We ship `acoustic_scale = 1.0`,
+which is the faithful assumption, and the sweep stands as a bound on the remaining error rather
+than as a recovered constant. The honest summary is that a second unmodelled quantity is now
+suspected, and this sweep is how it announced itself.
+
+`DecoderSettings::acoustic_scale` models the parameter explicitly (default 1.0) instead of
+leaving it an unstated assumption, and `prefix_beam_search` applies it where native does: to the
+log probabilities, before the alignment sum.

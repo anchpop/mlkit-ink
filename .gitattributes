@@ -9,3 +9,9 @@ models/*.zip                    filter=git-crypt diff=git-crypt
 evidence/*.local                filter=git-crypt diff=git-crypt
 evidence/libdigitalink.strings.txt filter=git-crypt diff=git-crypt
 evidence/en_us.recospec.raw.txt filter=git-crypt diff=git-crypt
+# These two test fixtures reproduce Google's tables verbatim -- the 725-row pack
+# catalog, the 313-symbol charset, the character-class table -- so they fall under
+# the same rule as the archives they were extracted from. The other goldens are
+# outputs of our own code (features, logits, transcripts) and stay plaintext.
+testdata/goldens/spec_goldens.json    filter=git-crypt diff=git-crypt
+testdata/goldens/decoder_goldens.json filter=git-crypt diff=git-crypt

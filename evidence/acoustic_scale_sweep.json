@@ -1,0 +1,590 @@
+{
+ "generator": "tools/sweep_acoustic_scale.py",
+ "premise": "0x42ed74..0x42ed88 scales every net log-posterior by -acoustic_scale, applied before the CTC alignment sum. LM-side weights held at their recovered native values.",
+ "native_lm_weight": 0.615223527,
+ "native_char_class_weight": 0.615223527,
+ "native_insertion_bonus": 1.901311993598938,
+ "trials": 74,
+ "rows": [
+  {
+   "acoustic_scale": 0.5,
+   "total": 62,
+   "singles": 42,
+   "words": 20,
+   "ranking_misses": 11,
+   "absent_from_nbest": 1,
+   "misses": [
+    {
+     "truth": "c",
+     "predicted": "C",
+     "truth_in_nbest": true,
+     "nbest": [
+      "C",
+      "c",
+      "o"
+     ]
+    },
+    {
+     "truth": "g",
+     "predicted": "9",
+     "truth_in_nbest": true,
+     "nbest": [
+      "9",
+      "g",
+      "8"
+     ]
+    },
+    {
+     "truth": "l",
+     "predicted": "|",
+     "truth_in_nbest": false,
+     "nbest": [
+      "|",
+      "I",
+      "1"
+     ]
+    },
+    {
+     "truth": "s",
+     "predicted": "S",
+     "truth_in_nbest": true,
+     "nbest": [
+      "S",
+      "5",
+      "s"
+     ]
+    },
+    {
+     "truth": "u",
+     "predicted": "U",
+     "truth_in_nbest": true,
+     "nbest": [
+      "U",
+      "u",
+      "4"
+     ]
+    },
+    {
+     "truth": "v",
+     "predicted": "V",
+     "truth_in_nbest": true,
+     "nbest": [
+      "V",
+      "v",
+      "w"
+     ]
+    },
+    {
+     "truth": "x",
+     "predicted": "X",
+     "truth_in_nbest": true,
+     "nbest": [
+      "X",
+      "x",
+      ">"
+     ]
+    },
+    {
+     "truth": "y",
+     "predicted": "Y",
+     "truth_in_nbest": true,
+     "nbest": [
+      "Y",
+      "y",
+      "4"
+     ]
+    },
+    {
+     "truth": "z",
+     "predicted": "2",
+     "truth_in_nbest": true,
+     "nbest": [
+      "2",
+      "Z",
+      "z"
+     ]
+    },
+    {
+     "truth": "so",
+     "predicted": "So",
+     "truth_in_nbest": true,
+     "nbest": [
+      "So",
+      "SO",
+      "so"
+     ]
+    },
+    {
+     "truth": "up",
+     "predicted": "Up",
+     "truth_in_nbest": true,
+     "nbest": [
+      "Up",
+      "up",
+      "UP"
+     ]
+    },
+    {
+     "truth": "we",
+     "predicted": "We",
+     "truth_in_nbest": true,
+     "nbest": [
+      "We",
+      "we",
+      "w"
+     ]
+    }
+   ]
+  },
+  {
+   "acoustic_scale": 0.75,
+   "total": 67,
+   "singles": 46,
+   "words": 21,
+   "ranking_misses": 7,
+   "absent_from_nbest": 0,
+   "misses": [
+    {
+     "truth": "c",
+     "predicted": "C",
+     "truth_in_nbest": true,
+     "nbest": [
+      "C",
+      "c",
+      "o"
+     ]
+    },
+    {
+     "truth": "g",
+     "predicted": "9",
+     "truth_in_nbest": true,
+     "nbest": [
+      "9",
+      "g",
+      "G"
+     ]
+    },
+    {
+     "truth": "l",
+     "predicted": "|",
+     "truth_in_nbest": true,
+     "nbest": [
+      "|",
+      "I",
+      "l"
+     ]
+    },
+    {
+     "truth": "s",
+     "predicted": "S",
+     "truth_in_nbest": true,
+     "nbest": [
+      "S",
+      "5",
+      "s"
+     ]
+    },
+    {
+     "truth": "y",
+     "predicted": "Y",
+     "truth_in_nbest": true,
+     "nbest": [
+      "Y",
+      "y",
+      "4"
+     ]
+    },
+    {
+     "truth": "so",
+     "predicted": "So",
+     "truth_in_nbest": true,
+     "nbest": [
+      "So",
+      "SO",
+      "so"
+     ]
+    },
+    {
+     "truth": "up",
+     "predicted": "Up",
+     "truth_in_nbest": true,
+     "nbest": [
+      "Up",
+      "up",
+      "UP"
+     ]
+    }
+   ]
+  },
+  {
+   "acoustic_scale": 1.0,
+   "total": 68,
+   "singles": 47,
+   "words": 21,
+   "ranking_misses": 6,
+   "absent_from_nbest": 0,
+   "misses": [
+    {
+     "truth": "c",
+     "predicted": "C",
+     "truth_in_nbest": true,
+     "nbest": [
+      "C",
+      "c",
+      "o"
+     ]
+    },
+    {
+     "truth": "g",
+     "predicted": "9",
+     "truth_in_nbest": true,
+     "nbest": [
+      "9",
+      "g",
+      "G"
+     ]
+    },
+    {
+     "truth": "s",
+     "predicted": "S",
+     "truth_in_nbest": true,
+     "nbest": [
+      "S",
+      "s",
+      "5"
+     ]
+    },
+    {
+     "truth": "y",
+     "predicted": "Y",
+     "truth_in_nbest": true,
+     "nbest": [
+      "Y",
+      "y",
+      "X"
+     ]
+    },
+    {
+     "truth": "so",
+     "predicted": "So",
+     "truth_in_nbest": true,
+     "nbest": [
+      "So",
+      "so",
+      "SO"
+     ]
+    },
+    {
+     "truth": "up",
+     "predicted": "Up",
+     "truth_in_nbest": true,
+     "nbest": [
+      "Up",
+      "up",
+      "UP"
+     ]
+    }
+   ]
+  },
+  {
+   "acoustic_scale": 1.25,
+   "total": 71,
+   "singles": 49,
+   "words": 22,
+   "ranking_misses": 3,
+   "absent_from_nbest": 0,
+   "misses": [
+    {
+     "truth": "s",
+     "predicted": "S",
+     "truth_in_nbest": true,
+     "nbest": [
+      "S",
+      "s",
+      "5"
+     ]
+    },
+    {
+     "truth": "y",
+     "predicted": "Y",
+     "truth_in_nbest": true,
+     "nbest": [
+      "Y",
+      "y",
+      "X"
+     ]
+    },
+    {
+     "truth": "so",
+     "predicted": "So",
+     "truth_in_nbest": true,
+     "nbest": [
+      "So",
+      "so",
+      "SO"
+     ]
+    }
+   ]
+  },
+  {
+   "acoustic_scale": 1.5,
+   "total": 71,
+   "singles": 49,
+   "words": 22,
+   "ranking_misses": 3,
+   "absent_from_nbest": 0,
+   "misses": [
+    {
+     "truth": "s",
+     "predicted": "S",
+     "truth_in_nbest": true,
+     "nbest": [
+      "S",
+      "s",
+      "5"
+     ]
+    },
+    {
+     "truth": "y",
+     "predicted": "Y",
+     "truth_in_nbest": true,
+     "nbest": [
+      "Y",
+      "y",
+      "X"
+     ]
+    },
+    {
+     "truth": "so",
+     "predicted": "So",
+     "truth_in_nbest": true,
+     "nbest": [
+      "So",
+      "so",
+      "SO"
+     ]
+    }
+   ]
+  },
+  {
+   "acoustic_scale": 2.0,
+   "total": 71,
+   "singles": 49,
+   "words": 22,
+   "ranking_misses": 3,
+   "absent_from_nbest": 0,
+   "misses": [
+    {
+     "truth": "s",
+     "predicted": "S",
+     "truth_in_nbest": true,
+     "nbest": [
+      "S",
+      "s",
+      "5"
+     ]
+    },
+    {
+     "truth": "y",
+     "predicted": "Y",
+     "truth_in_nbest": true,
+     "nbest": [
+      "Y",
+      "y",
+      "X"
+     ]
+    },
+    {
+     "truth": "so",
+     "predicted": "So",
+     "truth_in_nbest": true,
+     "nbest": [
+      "So",
+      "so",
+      "SO"
+     ]
+    }
+   ]
+  },
+  {
+   "acoustic_scale": 3.0,
+   "total": 71,
+   "singles": 49,
+   "words": 22,
+   "ranking_misses": 3,
+   "absent_from_nbest": 0,
+   "misses": [
+    {
+     "truth": "s",
+     "predicted": "S",
+     "truth_in_nbest": true,
+     "nbest": [
+      "S",
+      "s",
+      "5"
+     ]
+    },
+    {
+     "truth": "y",
+     "predicted": "Y",
+     "truth_in_nbest": true,
+     "nbest": [
+      "Y",
+      "y",
+      "X"
+     ]
+    },
+    {
+     "truth": "so",
+     "predicted": "So",
+     "truth_in_nbest": true,
+     "nbest": [
+      "So",
+      "so",
+      "SO"
+     ]
+    }
+   ]
+  },
+  {
+   "acoustic_scale": 4.0,
+   "total": 71,
+   "singles": 49,
+   "words": 22,
+   "ranking_misses": 3,
+   "absent_from_nbest": 0,
+   "misses": [
+    {
+     "truth": "s",
+     "predicted": "S",
+     "truth_in_nbest": true,
+     "nbest": [
+      "S",
+      "s",
+      "5"
+     ]
+    },
+    {
+     "truth": "y",
+     "predicted": "Y",
+     "truth_in_nbest": true,
+     "nbest": [
+      "Y",
+      "y",
+      "X"
+     ]
+    },
+    {
+     "truth": "so",
+     "predicted": "So",
+     "truth_in_nbest": true,
+     "nbest": [
+      "So",
+      "so",
+      "SO"
+     ]
+    }
+   ]
+  },
+  {
+   "acoustic_scale": 6.0,
+   "total": 71,
+   "singles": 49,
+   "words": 22,
+   "ranking_misses": 3,
+   "absent_from_nbest": 0,
+   "misses": [
+    {
+     "truth": "s",
+     "predicted": "S",
+     "truth_in_nbest": true,
+     "nbest": [
+      "S",
+      "s",
+      "5"
+     ]
+    },
+    {
+     "truth": "y",
+     "predicted": "Y",
+     "truth_in_nbest": true,
+     "nbest": [
+      "Y",
+      "y",
+      "X"
+     ]
+    },
+    {
+     "truth": "so",
+     "predicted": "So",
+     "truth_in_nbest": true,
+     "nbest": [
+      "So",
+      "so",
+      "SO"
+     ]
+    }
+   ]
+  },
+  {
+   "acoustic_scale": 8.0,
+   "total": 73,
+   "singles": 50,
+   "words": 23,
+   "ranking_misses": 1,
+   "absent_from_nbest": 0,
+   "misses": [
+    {
+     "truth": "s",
+     "predicted": "S",
+     "truth_in_nbest": true,
+     "nbest": [
+      "S",
+      "s",
+      "5"
+     ]
+    }
+   ]
+  },
+  {
+   "acoustic_scale": 12.0,
+   "total": 73,
+   "singles": 50,
+   "words": 23,
+   "ranking_misses": 1,
+   "absent_from_nbest": 0,
+   "misses": [
+    {
+     "truth": "s",
+     "predicted": "S",
+     "truth_in_nbest": true,
+     "nbest": [
+      "S",
+      "s",
+      "5"
+     ]
+    }
+   ]
+  }
+ ],
+ "best": {
+  "acoustic_scale": 8.0,
+  "total": 73,
+  "singles": 50,
+  "words": 23,
+  "ranking_misses": 1,
+  "absent_from_nbest": 0,
+  "misses": [
+   {
+    "truth": "s",
+    "predicted": "S",
+    "truth_in_nbest": true,
+    "nbest": [
+     "S",
+     "s",
+     "5"
+    ]
+   }
+  ]
+ }
+}
