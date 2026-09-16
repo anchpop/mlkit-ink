@@ -19,6 +19,7 @@
 //! and ship about 5 MB of model instead of 27 MB.
 
 use mlkit_ink::ink::Stroke;
+use mlkit_ink::optimize::{self, FitOptions};
 use mlkit_ink::settings::DecoderSettings;
 use mlkit_ink::{Candidate, Recognizer as Core};
 use serde::{Deserialize, Serialize};
@@ -63,6 +64,27 @@ pub struct Recognizer {
 #[derive(Deserialize)]
 struct Ink {
     strokes: Vec<Stroke>,
+}
+
+/// One chunk of gradient descent: the moved ink, plus what it now reads as.
+#[derive(Serialize)]
+struct JsFit {
+    /// The chunk's FINAL ink, which the caller should feed back in to continue.
+    /// Deliberately not the chunk's best: see `FitReport::last`.
+    strokes: Vec<Stroke>,
+    /// The best ink this chunk saw, worth keeping when `matched` is true.
+    best: Vec<Stroke>,
+    text: String,
+    /// What [`JsFit::best`] reads as, which can differ from `text`.
+    best_text: String,
+    matched: bool,
+    initial_loss: f64,
+    best_loss: f64,
+    /// True when the chunk ended exactly where it started, i.e. it made no
+    /// progress at all. Continuing is not hopeless — a later chunk re-derives
+    /// the segmentation — but several in a row means the target is out of
+    /// reach from this ink, and the caller should say so rather than spin.
+    stalled: bool,
 }
 
 #[derive(Serialize)]
@@ -176,6 +198,64 @@ impl Recognizer {
             beam_width,
             ..DecoderSettings::empirical()
         };
+    }
+    /// Run `steps` of gradient descent on the ink's coordinates, steering it
+    /// toward `target`. Returns the moved ink so the caller can draw it and
+    /// feed it straight back in for the next chunk.
+    ///
+    /// Chunked deliberately: a full fit is seconds of straight-line compute,
+    /// and wasm has one thread — which is the UI thread. Small chunks keep the
+    /// page responsive and let you watch the ink move, which is most of the
+    /// fun.
+    pub fn fit(
+        &self,
+        ink: JsValue,
+        origin: JsValue,
+        target: &str,
+        steps: usize,
+        anchor: f64,
+        smoothness: f64,
+    ) -> Result<JsValue, JsError> {
+        let strokes = parse_ink(ink)?;
+        // The ink the user actually drew, which both penalties measure against.
+        // Passing the current ink instead makes the reference chase the search
+        // and the penalties evaluate to zero on every applied step.
+        let origin = parse_ink(origin)?;
+        let recognizer = self.loaded.borrow_dependent();
+        let options = FitOptions {
+            steps: steps.max(1),
+            anchor_weight: anchor,
+            smoothness_weight: smoothness,
+            // Every chunk starts from a fresh segmentation anyway, so there is
+            // no point re-deriving it again inside one.
+            resegment_every: steps.max(1) + 1,
+            ..FitOptions::default()
+        };
+        let report = optimize::fit_strokes_from(recognizer, &strokes, &origin, target, &options)
+            .map_err(js_error)?;
+        let text = recognizer
+            .recognize_greedy(&report.last)
+            .map(|c| c.text)
+            .unwrap_or_default();
+        // The reading of the *best* ink, which is what a caller keeps when
+        // `matched` is true. Reporting `text` for it would let the final status
+        // claim a different letter from the one left on screen.
+        let best_text = recognizer
+            .recognize_greedy(&report.strokes)
+            .map(|c| c.text)
+            .unwrap_or_default();
+        let stalled = report.last == strokes;
+        let payload = JsFit {
+            strokes: report.last,
+            best: report.strokes,
+            text,
+            best_text,
+            matched: report.matched,
+            initial_loss: report.initial_ctc_loss,
+            best_loss: report.best_ctc_loss,
+            stalled,
+        };
+        serde_wasm_bindgen::to_value(&payload).map_err(|e| JsError::new(&e.to_string()))
     }
 }
 

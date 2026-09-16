@@ -144,11 +144,18 @@ Three links, differentiated three different ways, for reasons worth stating:
   fitter cannot drift, and it is cheap next to the network pass — the expensive link is the
   analytic one.
 
-`--anchor 0 --smoothness 0` turns it into an adversarial-example generator: the result scores
-beautifully and is unreadable. The defaults keep it a plausible pen trace, at the cost of failing
-on transformations the ink cannot reach — on a ten-pair spot check, six converged, all moving
-points by only 2–4% of the ink's diagonal, and the four failures say so rather than reporting a
-match they did not achieve.
+The step direction is blurred along each stroke before it is applied (`--smoothing`, an arc length
+as a fraction of the ink's diagonal). Nothing in the loss couples neighbouring samples, so
+descending the raw gradient grows sample-frequency jitter — on a densely sampled browser stroke the
+result came out ~144× wobblier than the ink that went in. Blurring the direction makes that jitter
+unreachable rather than merely penalised.
+
+It is not a trade against accuracy. Widening the blur took a ten-pair spot check from **six
+converged to ten** and cut the steps needed about fivefold: the jitter was wasted motion. Measured
+against the original ink's own curvature, results now come out 1–3× as wobbly instead of 30–140×.
+
+`--anchor 0 --smoothness 0 --smoothing 0` turns it into an adversarial-example generator: the
+result scores beautifully and is unreadable.
 
 ## Layout
 

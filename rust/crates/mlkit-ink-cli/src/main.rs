@@ -81,10 +81,28 @@ enum Command {
         smoothness: f64,
         #[arg(long, default_value_t = 10)]
         resegment_every: usize,
+        /// Width, as a fraction of the ink's diagonal, of the blur applied to
+        /// the descent direction. This is what keeps the result looking
+        /// hand-drawn; 0 lets the optimizer jitter individual samples.
+        #[arg(long, default_value_t = 0.4)]
+        smoothing: f64,
+        /// Average the gradient over this many jittered copies of the ink.
+        /// Above 1, the search must find a shape that reads correctly even when
+        /// nudged — which is what real handwriting does and an adversarial
+        /// example does not.
+        #[arg(long, default_value_t = 1)]
+        robust: usize,
+        /// How far to jitter, as a fraction of the ink's diagonal.
+        #[arg(long, default_value_t = 0.006)]
+        jitter: f64,
         /// Draw the original and the result overlaid, so the fit can be looked
         /// at and not just scored.
         #[arg(long)]
         svg: Option<PathBuf>,
+        /// Print the per-step loss, for telling a plateau apart from
+        /// divergence, oscillation, or a resegmentation cliff.
+        #[arg(long)]
+        history: bool,
     },
     /// List every language tag in the catalog.
     Languages,
@@ -192,7 +210,11 @@ fn main() -> Result<()> {
             anchor,
             smoothness,
             resegment_every,
+            smoothing,
+            robust,
+            jitter,
             svg: svg_path,
+            history,
         } => {
             let strokes = read_ink(&ink)?;
             let loaded = model::load(&root, &language, false, true)?;
@@ -207,6 +229,9 @@ fn main() -> Result<()> {
                 anchor_weight: anchor,
                 smoothness_weight: smoothness,
                 resegment_every,
+                smoothing,
+                robust_samples: robust,
+                jitter,
             };
             let report = optimize::fit_strokes(&recognizer, &strokes, &target, &options)
                 .map_err(|e| anyhow!("{e}"))?;
@@ -214,6 +239,18 @@ fn main() -> Result<()> {
                 .recognize_greedy(&report.strokes)
                 .map_err(|e| anyhow!("{e}"))?;
 
+            if history {
+                println!("  step   ctc_loss   regularization  reseg");
+                for record in &report.history {
+                    println!(
+                        "  {:>4}   {:>8.4}   {:>13.4}  {}",
+                        record.step,
+                        record.ctc_loss,
+                        record.regularization,
+                        if record.resegmented { "*" } else { "" }
+                    );
+                }
+            }
             println!("target      {target:?}");
             println!("before      {:?}", before.text);
             println!(

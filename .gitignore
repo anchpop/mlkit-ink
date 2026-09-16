@@ -25,6 +25,7 @@ android-oracle/**/*.apk
 rust/target/
 # pkg/ is wasm-pack output, regenerated from the crate.
 rust/crates/mlkit-ink-wasm/pkg/
+web/pkg/
 
 # --- working scratch, not part of the deliverable ---
 scratch/
