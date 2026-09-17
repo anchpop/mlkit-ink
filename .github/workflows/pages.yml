@@ -1,0 +1,76 @@
+name: demo
+
+on:
+  push:
+    branches: [main]
+    paths: ["web/**", "rust/**", ".github/workflows/pages.yml"]
+  workflow_dispatch:
+
+# One in-flight deploy; queue rather than cancel, so a push mid-deploy does not
+# leave the site half-published.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      # The model files are committed; only the wasm is built here, so a clone
+      # without the git-crypt key still produces a complete site.
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          targets: wasm32-unknown-unknown
+      - uses: actions/cache@v6
+        with:
+          path: |
+            ~/.cargo/registry
+            ~/.cargo/git
+            rust/target
+          key: wasm-${{ hashFiles('rust/Cargo.lock') }}
+          restore-keys: wasm-
+      - uses: jetli/wasm-pack-action@v0.4.0
+        with:
+          version: latest
+      - name: Build the wasm bundle
+        run: |
+          cd rust/crates/mlkit-ink-wasm
+          wasm-pack build --release --target web --out-dir "$GITHUB_WORKSPACE/web/pkg"
+      - name: Check the site is complete
+        run: |
+          set -eu
+          for required in web/index.html web/pkg/mlkit_ink_wasm.js \
+                          web/pkg/mlkit_ink_wasm_bg.wasm web/models/index.json; do
+            test -s "$required" || { echo "missing $required" >&2; exit 1; }
+          done
+          # The picker is useless if the packs it indexes are not deployed.
+          python3 - <<'PY'
+          import json, pathlib
+          root = pathlib.Path("web/models")
+          index = json.loads((root / "index.json").read_text())["languages"]
+          missing = sorted({f for e in index.values() for f in (e["recospec"], e["tflite"])
+                            if not (root / f).is_file()})
+          if missing:
+              raise SystemExit(f"{len(missing)} indexed packs are not present: {missing[:5]}")
+          print(f"{len(index)} language tags, all packs present")
+          PY
+      - uses: actions/configure-pages@v6
+      - uses: actions/upload-pages-artifact@v5
+        with:
+          path: web
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v5

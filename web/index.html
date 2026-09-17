@@ -33,6 +33,11 @@
                      border: 1px solid var(--line); background: var(--bg); color: var(--ink); }
   .row { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
   #status { font-size: 12px; color: var(--dim); min-height: 18px; margin-top: 10px; }
+  .picker { display: flex; align-items: center; gap: 10px; margin-bottom: 10px;
+            font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--dim); }
+  .picker select { flex: 1; font: inherit; font-size: 13px; text-transform: none;
+                   letter-spacing: normal; padding: 6px 8px; border-radius: 8px;
+                   border: 1px solid var(--line); background: var(--bg); color: var(--ink); }
   .slider { display: flex; align-items: center; gap: 8px; margin-top: 12px;
             font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--dim); }
   .slider input { flex: 1; accent-color: var(--ink); }
@@ -46,7 +51,12 @@
 <h1>mlkit-ink <small>Google's handwriting recognizer, running outside the SDK</small></h1>
 
 <div id="wrap">
-  <canvas id="pad" width="520" height="340"></canvas>
+  <div>
+    <label class="picker">writing system
+      <select id="language" disabled><option>loading…</option></select>
+    </label>
+    <canvas id="pad" width="520" height="340"></canvas>
+  </div>
   <div class="panel">
     <div class="card">
       <div class="label">Recognized</div>
@@ -74,7 +84,8 @@
 </div>
 
 <footer>
-  Draw a letter or a short word. Recognition is a best-path decode — the configuration that matches the
+  Pick a writing system and draw. All 361 language tags the SDK ships are here, across 27 scripts;
+  each script's network loads on demand. Recognition is a best-path decode — the configuration that matches the
   real ML Kit SDK on all 74 inks in our oracle corpus. <b>Morph</b> runs gradient descent on your
   strokes until the recognizer reads them as the target; watch them move.
 </footer>
@@ -90,6 +101,7 @@ const ui = {
   morph: document.getElementById("morph"), stop: document.getElementById("stop"),
   clear: document.getElementById("clear"), undo: document.getElementById("undo"),
   anchor: document.getElementById("anchor"), anchorOut: document.getElementById("anchorOut"),
+  language: document.getElementById("language"),
 };
 ui.anchor.oninput = () => { ui.anchorOut.textContent = ui.anchor.value; };
 
@@ -230,6 +242,7 @@ ui.morph.onclick = async () => {
   if (!target || strokes.length === 0) return;
   morphing = true;
   ui.morph.disabled = ui.clear.disabled = ui.undo.disabled = ui.anchor.disabled = true;
+  ui.language.disabled = true;
   ui.stop.disabled = false;
 
   // Each chunk continues from its FINAL ink, never its best: resuming from the
@@ -333,6 +346,7 @@ ui.morph.onclick = async () => {
   morphing = false;
   refreshControls();
   ui.clear.disabled = ui.undo.disabled = ui.anchor.disabled = false;
+  ui.language.disabled = false;
   ui.stop.disabled = true;
 };
 // Only asks the run to stop. `morphing` stays true until the loop has finished
@@ -376,30 +390,102 @@ function nextFrame() {
   });
 }
 
-// --- boot ----------------------------------------------------------------
-const MODELS = {
-  recospec: "../models/qrnn_en_us_reco_20200318_fst_20191208_recospec_zip/qrnn.en_us.reco_20200318.fst_20191208.recospec.local",
-  tflite: "../models/indy_lstm_latin_6x216_tflite_20191208_zip/latin_indy_lstm_6x216_20191208.tflite",
+// --- languages and boot --------------------------------------------------
+// One net serves every language written in its script -- Latin covers 269 tags,
+// Devanagari 50 -- so offering hundreds of languages costs little more than
+// offering the scripts, and a visitor downloads only the one they pick.
+const MODELS = "./models/";
+const cache = new Map();
+
+const fetchBytes = async (name) => {
+  if (!cache.has(name)) {
+    const response = await fetch(MODELS + name);
+    if (!response.ok) throw new Error(`${response.status} fetching ${name}`);
+    cache.set(name, new Uint8Array(await response.arrayBuffer()));
+  }
+  return cache.get(name);
 };
+
+/// The script a pack name belongs to, for grouping the picker. The names are
+/// Google's own and lead with the script, e.g. indy_lstm_latin_6x216_...
+const scriptOf = (net) =>
+  net.replace(/^(indy_)?lstm_/, "").replace(/^scribe_/, "").split("_")[0];
+
+const displayName = (tag) => {
+  try {
+    const name = new Intl.DisplayNames([navigator.language || "en"], { type: "language" })
+      .of(tag.split("-x-")[0]);
+    return name && name !== tag ? `${name} — ${tag}` : tag;
+  } catch { return tag; }
+};
+
+// Bumped on every selection. A slow fetch for a language the user has already
+// navigated away from must not install its recognizer over the newer one, which
+// is easy to hit by clicking twice: the second pick is small and cached, the
+// first is 7.8 MB of Chinese still in flight.
+let generation = 0;
+
+async function selectLanguage(tag) {
+  const entry = languages[tag];
+  if (!entry) return;
+  const mine = ++generation;
+
+  // wasm-bindgen objects are not garbage collected on the Rust side. Without
+  // an explicit free, every language switch strands a whole model -- up to
+  // 7.8 MB each -- until the page reloads.
+  recognizer?.free();
+  recognizer = null;
+  refreshControls();
+  say(`loading ${tag}…`);
+  try {
+    const [recospec, tflite] = await Promise.all([
+      fetchBytes(entry.recospec), fetchBytes(entry.tflite)]);
+    if (mine !== generation) return;                  // superseded mid-fetch
+    // No FST: it is 22 MB per language and buys nothing here, since the
+    // best-path decode is already what matches the SDK on every ink we have a
+    // label for.
+    recognizer = Recognizer.greedy_only(recospec, tflite);
+    say(`${tag} ready — ${entry.characters} characters`);
+  } catch (error) {
+    if (mine !== generation) return;                  // stale failure
+    say(`could not load ${tag}: ${error.message || error}`, true);
+    return;
+  }
+  recognize();
+  refreshControls();
+}
+
+let languages = {};
 
 (async () => {
   say("loading…");
   try {
     await init();
-    const [recospec, tflite] = await Promise.all(
-      [MODELS.recospec, MODELS.tflite].map(async (url) => {
-        const response = await fetch(url);
-        if (!response.ok) throw new Error(`${response.status} fetching ${url}`);
-        return new Uint8Array(await response.arrayBuffer());
-      }));
-    // No FST: it is 22 MB and buys nothing here, since the best-path decode is
-    // already what matches the SDK on every ink we have a label for.
-    recognizer = Recognizer.greedy_only(recospec, tflite);
-    say("ready — draw something");
-    // Anything drawn while the model was loading is still on the canvas and has
-    // never been read.
-    recognize();
-    refreshControls();
+    languages = (await (await fetch(MODELS + "index.json")).json()).languages;
+
+    // Group by script so the list is navigable at 361 entries.
+    const byScript = new Map();
+    for (const [tag, entry] of Object.entries(languages)) {
+      const script = scriptOf(entry.tflite);
+      if (!byScript.has(script)) byScript.set(script, []);
+      byScript.get(script).push(tag);
+    }
+    ui.language.innerHTML = "";
+    for (const script of [...byScript.keys()].sort()) {
+      const group = document.createElement("optgroup");
+      group.label = `${script} (${byScript.get(script).length})`;
+      for (const tag of byScript.get(script).sort()) {
+        const option = document.createElement("option");
+        option.value = tag;
+        option.textContent = displayName(tag);
+        group.appendChild(option);
+      }
+      ui.language.appendChild(group);
+    }
+    ui.language.disabled = false;
+    ui.language.value = languages["en-US"] ? "en-US" : Object.keys(languages)[0];
+    ui.language.onchange = () => selectLanguage(ui.language.value);
+    await selectLanguage(ui.language.value);
   } catch (error) {
     say(`${error.message || error}  (run tools/serve-demo.sh from the repo root)`, true);
   }

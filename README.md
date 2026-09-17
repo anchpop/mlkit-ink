@@ -173,6 +173,8 @@ src/                 the Python reference implementation
   decoder.py         CTC greedy + LM-fused prefix beam search
   recognize.py       end-to-end entry point
 rust/                the Rust port (see above)
+web/                 the browser demo, published to GitHub Pages
+  models/            27 networks + 361 recospecs, served to the page (unencrypted)
 tools/               fixture generators and the acoustic_scale sweep
 testdata/goldens/    frozen Python output, stage by stage, that the port is tested against
 proto/recospec.proto recovered schema
@@ -249,13 +251,27 @@ android-oracle/run_oracle.sh /absolute/path/to/ink.json
 
 Note the English model returns `null` from `getScore()`, so only candidate order is comparable.
 
+## Try it
+
+**[anchpop.github.io/mlkit-ink](https://anchpop.github.io/mlkit-ink/)** — draw in the browser,
+pick any of **361 language tags across 27 writing systems**, and watch gradient descent rewrite
+your strokes into a different character. Everything runs locally in wasm; nothing is uploaded.
+
+Each script's network loads only when you pick it, so the page starts at about 300 KB and a Latin
+recognizer costs 4 MB. `tools/serve-demo.sh` runs the same thing locally on loopback.
+
 ## Legal
 
-The model artifacts are Google's, downloaded from Google's own public endpoints. They are
-committed here **encrypted with git-crypt** (private repo), alongside the catalog and the
-strings/decodes extracted from `libdigitalink.so`. Everything authored by us — source, tests,
-the ink corpus, and these writeups — is plaintext. Only the `.zip` archives are stored; their
-extracted contents are reproducible from them, so a fresh clone works offline after
-`git-crypt unlock`.
+The model artifacts are Google's, downloaded from Google's own public, unauthenticated endpoints.
+
+**The demo publishes them.** `web/models/` holds 27 networks and 361 recognizer specs in the clear,
+because a browser cannot fetch them from `dl.google.com` directly — Google serves no
+`Access-Control-Allow-Origin` header, so CORS blocks it. Publishing a working demo therefore means
+rehosting those files, and that is a deliberate choice rather than an oversight.
+
+The rest of the catalog — the other archives and every language model — stays **git-crypt
+encrypted** in `models/`, as do the catalog itself and the strings extracted from
+`libdigitalink.so`. Everything authored here (source, tests, the ink corpus, these writeups) is
+plaintext.
 
 This is interoperability work on a shipped format.
