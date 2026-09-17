@@ -70,10 +70,6 @@
         <button id="morph" disabled>Morph</button>
         <button id="stop" disabled>Stop</button>
       </div>
-      <label class="slider">stay like my drawing
-        <input id="anchor" type="range" min="0" max="6" step="0.25" value="3">
-        <output id="anchorOut">3</output>
-      </label>
       <div id="status"></div>
     </div>
     <div class="row">
@@ -100,10 +96,8 @@ const ui = {
   status: document.getElementById("status"), target: document.getElementById("target"),
   morph: document.getElementById("morph"), stop: document.getElementById("stop"),
   clear: document.getElementById("clear"), undo: document.getElementById("undo"),
-  anchor: document.getElementById("anchor"), anchorOut: document.getElementById("anchorOut"),
   language: document.getElementById("language"),
 };
-ui.anchor.oninput = () => { ui.anchorOut.textContent = ui.anchor.value; };
 
 let strokes = [];          // committed strokes, {x, y, t}
 let current = null;        // the stroke being drawn
@@ -241,7 +235,7 @@ ui.morph.onclick = async () => {
   const target = ui.target.value;
   if (!target || strokes.length === 0) return;
   morphing = true;
-  ui.morph.disabled = ui.clear.disabled = ui.undo.disabled = ui.anchor.disabled = true;
+  ui.morph.disabled = ui.clear.disabled = ui.undo.disabled = true;
   ui.language.disabled = true;
   ui.stop.disabled = false;
 
@@ -273,8 +267,12 @@ ui.morph.onclick = async () => {
   for (let chunk = 0; chunk < MAX_CHUNKS && !cancelled; chunk++) {
     let result;
     try {
-      result = recognizer.fit(
-        { strokes }, { strokes: origin }, target, CHUNK, Number(ui.anchor.value), 3.0);
+      // Anchor 0: nothing pulls the ink back toward what was drawn, so the
+      // search is free to go wherever the recognizer is most confident. That is
+      // the adversarial regime, and it is the interesting one to watch. The
+      // smoothness term still holds, which is what keeps the result a pen
+      // stroke rather than noise.
+      result = recognizer.fit({ strokes }, { strokes: origin }, target, CHUNK, 0.0, 3.0);
     } catch (error) {
       say(String(error.message || error), true);
       stopReason = null;
@@ -345,7 +343,7 @@ ui.morph.onclick = async () => {
 
   morphing = false;
   refreshControls();
-  ui.clear.disabled = ui.undo.disabled = ui.anchor.disabled = false;
+  ui.clear.disabled = ui.undo.disabled = false;
   ui.language.disabled = false;
   ui.stop.disabled = true;
 };
